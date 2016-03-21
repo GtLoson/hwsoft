@@ -1,5 +1,6 @@
 package com.hwsoft.wechat.controller;
 
+import com.hwsoft.wechat.manager.faceplus.FacePlusOutMsg;
 import com.jfinal.kit.PropKit;
 import com.jfinal.weixin.sdk.api.ApiConfig;
 import com.jfinal.weixin.sdk.api.ApiResult;
@@ -8,10 +9,7 @@ import com.jfinal.weixin.sdk.jfinal.MsgController;
 import com.jfinal.weixin.sdk.msg.in.*;
 import com.jfinal.weixin.sdk.msg.in.event.*;
 import com.jfinal.weixin.sdk.msg.in.speech_recognition.InSpeechRecognitionResults;
-import com.jfinal.weixin.sdk.msg.out.OutImageMsg;
-import com.jfinal.weixin.sdk.msg.out.OutMusicMsg;
-import com.jfinal.weixin.sdk.msg.out.OutNewsMsg;
-import com.jfinal.weixin.sdk.msg.out.OutTextMsg;
+import com.jfinal.weixin.sdk.msg.out.*;
 import org.apache.log4j.Logger;
 
 /**
@@ -26,7 +24,14 @@ public class WechatMsgController extends MsgController {
 
   static Logger logger = Logger.getLogger(WechatMsgController.class);
 
-  private static final String helpStr = "\t发送 help 可获得帮助，发送\"视频\" 可获取视频教程，发送 \"美女\" 可看美女，发送 music 可听音乐 ，发送新闻可看JFinal新版本消息。公众号功能持续完善中";
+  private static final String helpTitle = "/::)感谢您关注恒温软件/:8-)\n\r";
+  private static final String helpStr = "小贴士:" +
+                                      "\n\r发送'帮助'可获得帮助" +
+                                      "\n\r发送'视频'可获取视频教程" +
+                                      "\n\r发送'美女'可看美女" +
+                                      "\n\r发送'音乐'可听音乐" +
+                                      "\n\r发送新闻可看新闻" +
+                                      "\n\r公众号功能持续完善中...";
 
 
   @Override
@@ -58,8 +63,9 @@ public class WechatMsgController extends MsgController {
     // 图文消息测试
     else if ("news".equalsIgnoreCase(msgContent) || "新闻".equalsIgnoreCase(msgContent)) {
       OutNewsMsg outMsg = new OutNewsMsg(inTextMsg);
-      outMsg.addNews("我的微信公众号javenlife", "Jfinal开发微信技术交流","https://mmbiz.qlogo.cn/mmbiz/ibHRiaZ9MRcUosol56OtHjVibWTK9opiaxsYTQHXuRwoib8YobOfqCbykp3ZSaEk8czAqdkAARU0OdKDtv34F5evFIQ/0?wx_fmt=jpeg", "http://mp.weixin.qq.com/s?__biz=MzA4MDA2OTA0Mg==&mid=208184833&idx=1&sn=d9e615e45902c3c72db6c24b65c4af3e#rd");
-      outMsg.addNews("我的博客《智慧云端日记》", "现在就加入 JFinal 极速开发世界，节省更多时间去跟女友游山玩水 ^_^", "https://mmbiz.qlogo.cn/mmbiz/ibHRiaZ9MRcUosol56OtHjVibWTK9opiaxsY9tPDricojmV5xxuLJyibZJXMAdNOx1qbZFcic9SvsPF2fTUnSc9oQB1IQ/0?wx_fmt=jpeg","http://mp.weixin.qq.com/s?__biz=MzA4MDA2OTA0Mg==&mid=208413033&idx=1&sn=06e816e1b2905c46c9a81df0ac0b3bad#rd");
+      outMsg.addNews("我的微信公众号Hw_Office", "好看、好玩、好笑","https://mmbiz.qlogo.cn/mmbiz/ibHRiaZ9MRcUosol56OtHjVibWTK9opiaxsYTQHXuRwoib8YobOfqCbykp3ZSaEk8czAqdkAARU0OdKDtv34F5evFIQ/0?wx_fmt=jpeg", "http://mp.weixin.qq.com/s?__biz=MzA4MDA2OTA0Mg==&mid=208184833&idx=1&sn=d9e615e45902c3c72db6c24b65c4af3e#rd");
+      outMsg.addNews("我的博客《智慧云端日记》", "好看、好玩、好笑", "https://mmbiz.qlogo.cn/mmbiz/ibHRiaZ9MRcUosol56OtHjVibWTK9opiaxsY9tPDricojmV5xxuLJyibZJXMAdNOx1qbZFcic9SvsPF2fTUnSc9oQB1IQ/0?wx_fmt=jpeg","http://mp.weixin.qq.com/s?__biz=MzA4MDA2OTA0Mg==&mid=208413033&idx=1&sn=06e816e1b2905c46c9a81df0ac0b3bad#rd");
+      outMsg.addNews("我的博客《智慧云端日记》", "好看、好玩、好笑", "https://mmbiz.qlogo.cn/mmbiz/ibHRiaZ9MRcUosol56OtHjVibWTK9opiaxsY9tPDricojmV5xxuLJyibZJXMAdNOx1qbZFcic9SvsPF2fTUnSc9oQB1IQ/0?wx_fmt=jpeg","http://mp.weixin.qq.com/s?__biz=MzA4MDA2OTA0Mg==&mid=208413033&idx=1&sn=06e816e1b2905c46c9a81df0ac0b3bad#rd");
       render(outMsg);
     }
     // 音乐消息测试
@@ -75,8 +81,8 @@ public class WechatMsgController extends MsgController {
     else if ("美女".equalsIgnoreCase(msgContent)) {
       OutNewsMsg outMsg = new OutNewsMsg(inTextMsg);
       outMsg.addNews(
-              "javenlife 宝贝更新喽",
-              "javenlife 宝贝更新喽，我们只看美女 ^_^",
+              "宝贝更新喽",
+              "宝贝更新喽，我们只看美女 ^_^",
               "https://mmbiz.qlogo.cn/mmbiz/ibHRiaZ9MRcUosol56OtHjVibWTK9opiaxsYTQHXuRwoib8YobOfqCbykp3ZSaEk8czAqdkAARU0OdKDtv34F5evFIQ/0?wx_fmt=jpeg",
               "http://mp.weixin.qq.com/s?__biz=MzA4MDA2OTA0Mg==&mid=207820985&idx=1&sn=4ef9361e68495fc3ba1d2f7f2bca0511#rd");
       render(outMsg);
@@ -85,41 +91,57 @@ public class WechatMsgController extends MsgController {
     else {
       renderOutTextMsg("\t您发送的内容已接收，内容为： " + inTextMsg.getContent() + "\n\n" + helpStr);
     }
-    createMenu();
+    //createMenu();
   }
 
   @Override
   protected void processInImageMsg(InImageMsg inImageMsg) {
-    OutImageMsg outMsg = new OutImageMsg(inImageMsg);
-    outMsg.setMediaId(inImageMsg.getMediaId());
-    render(outMsg);
+    //人脸识别
+
+    FacePlusOutMsg facePlus = new FacePlusOutMsg(inImageMsg);
+
+    render(facePlus.getOutTextMsg());
   }
 
   @Override
   protected void processInVoiceMsg(InVoiceMsg inVoiceMsg) {
-
+      TransferMsg outMsg = new TransferMsg(inVoiceMsg);
+      render(outMsg);
   }
 
   @Override
   protected void processInVideoMsg(InVideoMsg inVideoMsg) {
-
+      OutTextMsg outMsg = new OutTextMsg(inVideoMsg);
+      outMsg.setContent("\t视频消息已成功接收，该视频的 mediaId 为: " + inVideoMsg.getMediaId());
+      render(outMsg);
   }
 
   @Override
   protected void processInLocationMsg(InLocationMsg inLocationMsg) {
-
+      OutTextMsg outMsg = new OutTextMsg(inLocationMsg);
+      outMsg.setContent("已收到地理位置消息:" +
+              "\nlocation_X = " + inLocationMsg.getLocation_X() +
+              "\nlocation_Y = " + inLocationMsg.getLocation_Y() +
+              "\nscale = " + inLocationMsg.getScale() +
+              "\nlabel = " + inLocationMsg.getLabel());
+      render(outMsg);
   }
 
   @Override
   protected void processInLinkMsg(InLinkMsg inLinkMsg) {
-
+      OutNewsMsg outMsg = new OutNewsMsg(inLinkMsg);
+      outMsg.addNews("链接消息已成功接收", "链接使用图文消息的方式发回给你，还可以使用文本方式发回。点击图文消息可跳转到链接地址页面，是不是很好玩 :)" , "http://mmbiz.qpic.cn/mmbiz/zz3Q6WSrzq1ibBkhSA1BibMuMxLuHIvUfiaGsK7CC4kIzeh178IYSHbYQ5eg9tVxgEcbegAu22Qhwgl5IhZFWWXUw/0", inLinkMsg.getUrl());
+      render(outMsg);
   }
 
 
 
   @Override
   protected void processInFollowEvent(InFollowEvent inFollowEvent) {
-
+      OutTextMsg outMsg = new OutTextMsg(inFollowEvent);
+      outMsg.setContent(helpTitle + helpStr);
+      // 如果为取消关注事件，将无法接收到传回的信息
+      render(outMsg);
   }
 
   @Override
@@ -129,19 +151,29 @@ public class WechatMsgController extends MsgController {
 
   @Override
   protected void processInLocationEvent(InLocationEvent inLocationEvent) {
-
+      OutTextMsg outMsg = new OutTextMsg(inLocationEvent);
+      outMsg.setContent("processInLocationEvent() 方法测试成功");
+      render(outMsg);
   }
 
 
   @Override
   protected void processInMenuEvent(InMenuEvent inMenuEvent) {
+      if("V4001_GOOD".equals(inMenuEvent.getEventKey())){
+          renderOutTextMsg("400-021-0951");
+      }else if("V5001_GOOD".equals(inMenuEvent.getEventKey())) {
+          renderOutTextMsg("客服电话：400-066-8969\n" +
+                  "投资客户QQ群：482644889\n" +
+                  "公司地址：浙江省杭州市江干区市民中心D座");
+      }else{
+          renderOutTextMsg("processInMenuEvent() 方法测试成功");
+      }
 
   }
 
   @Override
   protected void processInSpeechRecognitionResults(InSpeechRecognitionResults inSpeechRecognitionResults) {
-
-
+      renderOutTextMsg("语音识别结果： " + inSpeechRecognitionResults.getRecognition());
   }
 
   String menuJsonStr = "{\n" +

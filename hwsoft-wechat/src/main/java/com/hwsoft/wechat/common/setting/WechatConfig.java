@@ -4,6 +4,10 @@ import com.hwsoft.wechat.controller.WechatApiController;
 import com.hwsoft.wechat.controller.WechatMsgController;
 import com.jfinal.config.*;
 import com.jfinal.core.JFinal;
+import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
+import com.jfinal.plugin.activerecord.Config;
+import com.jfinal.plugin.c3p0.C3p0Plugin;
+import com.jfinal.plugin.ehcache.EhCachePlugin;
 import com.jfinal.render.ViewType;
 import com.hwsoft.wechat.common.GlobInterceptor;
 import com.jfinal.weixin.sdk.api.ApiConfigKit;
@@ -27,15 +31,13 @@ public class WechatConfig extends JFinalConfig{
 
         public void configConstant(Constants me) {
             // 如果生产环境配置文件存在，则优先加载该配置，否则加载开发环境配置文件
-            loadProp("properties/wechat-config.properties", "properties/wechat-config.properties");
+            loadProp("properties/wechat-config-pro.properties", "properties/wechat-config-dev.properties");
             me.setDevMode(getPropertyToBoolean("devMode", true));
 
             // ApiConfigKit 设为开发模式可以在开发阶段输出请求交互的 xml 与 json 数据
             ApiConfigKit.setDevMode(me.getDevMode());
             me.setViewType(ViewType.JSP);
             me.setBaseViewPath("/WEB-INF/jsp/");
-
-
         }
 
         /**
@@ -52,18 +54,19 @@ public class WechatConfig extends JFinalConfig{
         }
 
         public void configPlugin(Plugins me) {
-//		C3p0Plugin c3p0Plugin = new C3p0Plugin(getProperty("jdbcUrl"), getProperty("user"), getProperty("password").trim());
-//		me.add(c3p0Plugin);
-//
-//		EhCachePlugin ecp = new EhCachePlugin();
-//		me.add(ecp);
-//
-//        // 配置ActiveRecord插件
-//        ActiveRecordPlugin arp = new ActiveRecordPlugin(c3p0Plugin);
-//        me.add(arp);
-//        arp.addMapping("blog", Blog.class);	// 映射blog 表到 Blog模型
-//        arp.addMapping("apply_order", ApplyOrder.class);
 
+/*            C3p0Plugin c3p0Plugin = new C3p0Plugin(getProperty("jdbcUrl"), getProperty("user"), getProperty("password").trim());
+            me.add(c3p0Plugin);
+
+            // 配置ActiveRecord插件：数据库映射
+            ActiveRecordPlugin activeRecordPlugin = new ActiveRecordPlugin(c3p0Plugin);
+            me.add(activeRecordPlugin);
+            activeRecordPlugin.addMapping("blog", null);	// 映射Blog.class 表到 Blog模型
+            activeRecordPlugin.addMapping("apply_order", null);*/
+
+            //
+            EhCachePlugin ehCachePlugin = new EhCachePlugin();
+            me.add(ehCachePlugin);
 
         }
         public void afterJFinalStart() {
