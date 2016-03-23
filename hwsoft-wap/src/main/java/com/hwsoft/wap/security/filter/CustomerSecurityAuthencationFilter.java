@@ -6,7 +6,6 @@ import org.springframework.security.access.intercept.InterceptorStatusToken;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
 
-import com.hwsoft.wap.security.common.MobileUrlUtil;
 import com.hwsoft.wap.security.common.SecurityConf;
 import com.hwsoft.wap.security.util.SecurityUtil;
 import com.hwsoft.model.customer.Customer;
@@ -36,12 +35,12 @@ public class CustomerSecurityAuthencationFilter extends
     	if(null == customer){
     		String currentUri = httpServletRequest.getRequestURI();
     		boolean flag = false;
-    		for(String url : MobileUrlUtil.getNO_LOGIN_URL_LIST()){
-    			if(currentUri.contains(url)){
-    				flag = true;
-    				break;
-    			}
-    		}
+    		/*for(String url : MobileUrlUtil.getNO_LOGIN_URL_LIST()){
+                if(currentUri.contains(url)){
+                    flag = true;
+                    break;
+                }
+            }*/
     		if(!flag){
     			httpServletResponse.sendRedirect(httpServletRequest.getContextPath() +httpServletResponse.encodeRedirectURL(SecurityConf.LOGIN_TIMEOUT_URL));   
         		return ;
