@@ -3,10 +3,14 @@
  */
 package com.hwsoft.cms.controller.staff;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
+import com.hwsoft.cms.common.vo.staff.TreeUtil;
+import com.hwsoft.cms.common.vo.staff.TreeVo;
 import com.hwsoft.cms.controller.BaseController;
 import com.hwsoft.cms.security.service.SecurityStaffRoleCacheService;
 import com.hwsoft.exception.staff.StaffException;
@@ -50,13 +54,12 @@ public class FunctionInfoController extends BaseController {
 		info.setId(null);
 		info.setName("功能树");
 		info.setChildren(functionInfos);
-		
-//		List<FunctionInfo> infos = new ArrayList<FunctionInfo>();
-//		infos.add(info);
-//		List<TreeVo> treeVos = TreeUtil.functionInfoToTreeVo(infos, parentId);
-//		Map<String, Object> result = new HashMap<String, Object>();
-//        result.put("treeVos", treeVos);
-        return null;
+		List<FunctionInfo> infos = new ArrayList<FunctionInfo>();
+		infos.add(info);
+		List<TreeVo> treeVos = TreeUtil.functionInfoToTreeVo(infos, parentId);
+		Map<String, Object> result = new HashMap<String, Object>();
+        result.put("tree", treeVos);
+        return result;
 	}
 	
 	

@@ -1,11 +1,12 @@
 package com.hwsoft.cms.common.vo.staff;
 
 
+
+import com.hwsoft.model.staff.FunctionInfo;
+import com.hwsoft.model.staff.StaffRole;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.qianmama.model.staff.FunctionInfo;
-import com.qianmama.model.staff.StaffRole;
 
 
 public class TreeUtil {

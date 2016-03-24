@@ -35,6 +35,8 @@
         <module>hwsoft-common</module>
         <module>hwsoft-wechat</module>
         <module>hwsoft-wap</module>
+        <module>hwsoft-cms</module>
+        <module>hwsoft-crawler</module>
   </modules>
 
     <build>

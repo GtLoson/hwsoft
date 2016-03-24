@@ -9,9 +9,12 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.hwsoft.cms.common.vo.staff.TreeUtil;
+import com.hwsoft.cms.common.vo.staff.TreeVo;
 import com.hwsoft.cms.controller.BaseController;
 import com.hwsoft.cms.security.service.SecurityStaffRoleCacheService;
 import com.hwsoft.exception.staff.StaffException;
+import com.hwsoft.model.staff.FunctionInfo;
 import com.hwsoft.model.staff.StaffRole;
 import com.hwsoft.service.staff.FunctionInfoService;
 import com.hwsoft.service.staff.StaffRoleService;
@@ -139,10 +142,10 @@ public class StaffRoleController extends BaseController {
 	@ResponseBody
     public Map<String, Object> tree(HttpServletRequest request, HttpServletResponse response, Integer staffRoleId){
 		
-//		List<FunctionInfo> functionInfos = functionInfoService.findFunctionInfosByParenId(null);
-//		StaffRole staffRole = staffRoleService.getStaffRoleById(staffRoleId);
-//		List<TreeVo> treeVos = TreeUtil.functionInfoToTreeVo(functionInfos,staffRole);
-//		addResultMap("treeVos", treeVos);
+		List<FunctionInfo> functionInfos = functionInfoService.findFunctionInfosByParenId(null);
+		StaffRole staffRole = staffRoleService.getStaffRoleById(staffRoleId);
+		List<TreeVo> treeVos = TreeUtil.functionInfoToTreeVo(functionInfos, staffRole);
+		addResultMap("tree", treeVos);
 		return getResultMap();
 	}
 	

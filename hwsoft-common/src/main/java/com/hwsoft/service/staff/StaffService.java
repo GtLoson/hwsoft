@@ -21,7 +21,7 @@ public interface StaffService {
     /**
      * 更新用户
      *
-     * @param staff
+     * @param
      * @return
      */
     Staff updateStaff(int staffId,String realName,boolean enable, String enName);
