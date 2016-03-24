@@ -6,8 +6,8 @@
 	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
   <display-name>hwsoft-cms</display-name>
     <context-param>
-        <param-name>webAppRootKey</param-name>
-        <param-value>hwsoft-cms</param-value>
+        <param-name>rootPath</param-name>
+        <param-value>cms</param-value>
     </context-param>
     <context-param>
 		<param-name>contextConfigLocation</param-name>

@@ -16,10 +16,10 @@
     <![endif]-->
 
     <link rel="shortcut icon" href="favicon.ico">
-    <link href="/theme/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
-    <link href="/theme/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
-    <link href="/theme/css/animate.min.css" rel="stylesheet">
-    <link href="/theme/css/style.min862f.css?v=4.1.0" rel="stylesheet">
+    <link href="theme/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="theme/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link href="theme/css/animate.min.css" rel="stylesheet">
+    <link href="theme/css/style.min862f.css?v=4.1.0" rel="stylesheet">
 </head>
 
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
@@ -30,13 +30,12 @@
         </div>
         <div class="sidebar-collapse">
                 <ul class="nav" id="side-menu">
-                    <script id="side-menu-template" type="text/x-handlebars-template">
                     <li class="nav-header">
                         <div class="dropdown profile-element">
-                            <span><img alt="image" class="img-circle" src="img/profile_small.jpg" /></span>
+                            <span><img alt="image" class="img-circle" src="theme/img/profile_small.jpg" /></span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                <span class="clear">
-                               <span class="block m-t-xs"><strong class="font-bold">Beaut-zihan</strong></span>
+                               <span class="block m-t-xs"><strong class="font-bold">${staff.name}</strong></span>
                                <span class="text-muted text-xs block">超级管理员<b class="caret"></b></span>
                                </span>
                             </a>
@@ -58,29 +57,37 @@
                         </div>
                     </li>
 
-                        <li>
-                            <a href="#"><i class="fa fa-home"></i><span class="nav-label">主页</span><span class="fa arrow"></span></a>
+                    <li>
+                            <a href="#"><i class="fa fa-home"></i><span class="nav-label">我的控制台</span><span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a class="J_menuItem" href="index_v1.html" data-index="0">主页示例一</a>
+                                    <a class="J_menuItem" href="index_v1.html" data-index="0">我的任务</a>
                                 </li>
                                 <li>
-                                    <a class="J_menuItem" href="index_v2.html">主页示例二</a>
+                                    <a class="J_menuItem" href="index_v2.html">我的邮件</a>
                                 </li>
                                 <li>
-                                    <a class="J_menuItem" href="index_v3.html">主页示例三</a>
-                                </li>
-                                <li>
-                                    <a class="J_menuItem" href="index_v4.html">主页示例四</a>
+                                    <a class="J_menuItem" href="index_v3.html">便利贴</a>
                                 </li>
                             </ul>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="layouts.html"><i class="fa fa-columns"></i> <span class="nav-label">布局</span></a>
-                        </li>
-                    </script>
-                </ul>
-               <%--
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-home"></i><span class="nav-label">系统用户管理</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a class="J_menuItem" href="staff/index">用户管理</a>
+                            </li>
+                            <li>
+                                <a class="J_menuItem" href="staffRole/index">角色管理</a>
+                            </li>
+                            <li>
+                                <a class="J_menuItem" href="functionInfo/index">菜单管理</a>
+                            </li>
+                        </ul>
+                    </li>
+                 <li>
+                       <a class="J_menuItem" href="layouts.html"><i class="fa fa-columns"></i> <span class="nav-label">布局</span></a>
+                 </li>
                 <li>
                     <a href="#">
                         <i class="fa fa fa-bar-chart-o"></i><span class="nav-label">统计图表</span><span class="fa arrow"></span>
@@ -364,7 +371,7 @@
                     </ul>
                 </li>
 
-            </ul>--%>
+            </ul>
         </div>
     </nav>
     <!--左侧导航结束-->
@@ -388,7 +395,7 @@
                             <li class="m-t-xs">
                                 <div class="dropdown-messages-box">
                                     <a href="profile.html" class="pull-left">
-                                        <img alt="image" class="img-circle" src="img/a7.jpg">
+                                        <img alt="image" class="img-circle" src="theme/img/a7.jpg">
                                     </a>
                                     <div class="media-body">
                                         <small class="pull-right">46小时前</small>
@@ -402,7 +409,7 @@
                             <li>
                                 <div class="dropdown-messages-box">
                                     <a href="profile.html" class="pull-left">
-                                        <img alt="image" class="img-circle" src="img/a4.jpg">
+                                        <img alt="image" class="img-circle" src="theme/img/a4.jpg">
                                     </a>
                                     <div class="media-body ">
                                         <small class="pull-right text-navy">25小时前</small>
@@ -606,7 +613,7 @@
                         <div class="sidebar-message">
                             <a href="#">
                                 <div class="pull-left text-center">
-                                    <img alt="image" class="img-circle message-avatar" src="img/a1.jpg">
+                                    <img alt="image" class="img-circle message-avatar" src="theme/img/a1.jpg">
 
                                     <div class="m-t-xs">
                                         <i class="fa fa-star text-warning"></i>
@@ -624,7 +631,7 @@
                         <div class="sidebar-message">
                             <a href="#">
                                 <div class="pull-left text-center">
-                                    <img alt="image" class="img-circle message-avatar" src="img/a2.jpg">
+                                    <img alt="image" class="img-circle message-avatar" src="theme/img/a2.jpg">
                                 </div>
                                 <div class="media-body">
                                     HCY48之音乐大魔王会员专属皮肤已上线，快来一键换装拥有他，宣告你对华晨宇的爱吧！
@@ -636,7 +643,7 @@
                         <div class="sidebar-message">
                             <a href="#">
                                 <div class="pull-left text-center">
-                                    <img alt="image" class="img-circle message-avatar" src="img/a3.jpg">
+                                    <img alt="image" class="img-circle message-avatar" src="theme/img/a3.jpg">
 
                                     <div class="m-t-xs">
                                         <i class="fa fa-star text-warning"></i>
@@ -654,7 +661,7 @@
                         <div class="sidebar-message">
                             <a href="#">
                                 <div class="pull-left text-center">
-                                    <img alt="image" class="img-circle message-avatar" src="img/a4.jpg">
+                                    <img alt="image" class="img-circle message-avatar" src="theme/img/a4.jpg">
                                 </div>
 
                                 <div class="media-body">
@@ -667,7 +674,7 @@
                         <div class="sidebar-message">
                             <a href="#">
                                 <div class="pull-left text-center">
-                                    <img alt="image" class="img-circle message-avatar" src="img/a8.jpg">
+                                    <img alt="image" class="img-circle message-avatar" src="theme/img/a8.jpg">
                                 </div>
                                 <div class="media-body">
 
@@ -680,7 +687,7 @@
                         <div class="sidebar-message">
                             <a href="#">
                                 <div class="pull-left text-center">
-                                    <img alt="image" class="img-circle message-avatar" src="img/a7.jpg">
+                                    <img alt="image" class="img-circle message-avatar" src="theme/img/a7.jpg">
                                 </div>
                                 <div class="media-body">
                                     这哥们的新视频又来了，创意杠杠滴，帅炸了！
@@ -692,7 +699,7 @@
                         <div class="sidebar-message">
                             <a href="#">
                                 <div class="pull-left text-center">
-                                    <img alt="image" class="img-circle message-avatar" src="img/a3.jpg">
+                                    <img alt="image" class="img-circle message-avatar" src="theme/img/a3.jpg">
 
                                     <div class="m-t-xs">
                                         <i class="fa fa-star text-warning"></i>
@@ -710,7 +717,7 @@
                         <div class="sidebar-message">
                             <a href="#">
                                 <div class="pull-left text-center">
-                                    <img alt="image" class="img-circle message-avatar" src="img/a4.jpg">
+                                    <img alt="image" class="img-circle message-avatar" src="theme/img/a4.jpg">
                                 </div>
                                 <div class="media-body">
                                     我发起了一个投票 【你认为下午大盘会翻红吗？】
@@ -910,37 +917,20 @@
         </a>
     </div>
 </div>
-<script src="/theme/js/jquery.min.js?v=2.1.4"></script>
-<script src="/theme/js/bootstrap.min.js?v=3.3.6"></script>
-<script src="/theme/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="/theme/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-<script src="/theme/js/plugins/layer/layer.min.js"></script>
-<script src="/theme/js/hplus.min.js?v=4.1.0"></script>
-<script type="text/javascript" src="/theme/js/contabs.min.js"></script>
-<script src="/theme/js/plugins/pace/pace.min.js"></script>
+<script src="theme/js/jquery.min.js?v=2.1.4"></script>
+<script src="theme/js/bootstrap.min.js?v=3.3.6"></script>
+<script src="theme/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="theme/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="theme/js/plugins/layer/layer.min.js"></script>
+<script src="theme/js/hplus.min.js?v=4.1.0"></script>
+<script type="text/javascript" src="theme/js/contabs.min.js"></script>
+<script src="theme/js/plugins/pace/pace.min.js"></script>
 
-<script src="/theme/js/common/handlebars.min.js"></script>
+<script src="theme/js/common/handlebars.min.js"></script>
 <script>
 
     $(document).ready(function() {
-        var template = Handlebars.compile($("#side-menu-template").html());
-        $('#side-menu').html(template(showDayData()));
     });
-
-    function showDayData(){
-        var data;
-        $.ajax({
-            type: "POST",
-            contentType: "application/json",
-            url: "/event/charts/pc/DAY",
-            dataType: 'json',
-            async:false,
-            success: function(result) {
-                data = result;
-            }
-        });
-        return data;
-    }
 
 </script>
 </body>

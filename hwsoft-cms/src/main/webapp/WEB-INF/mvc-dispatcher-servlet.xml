@@ -15,9 +15,7 @@
         <property name="defaultEncoding" value="UTF-8"/>
         <property name="basenames">
             <list>
-				<value>classpath:properties/wap-message</value>
-				
-				<value>classpath:properties/common-message</value>
+
             </list>
         </property>
     </bean>
@@ -26,7 +24,7 @@
     <security:global-method-security pre-post-annotations="enabled" jsr250-annotations="enabled"/>
     <!-- controller scan -->
 
-    <context:component-scan base-package="com.hwsoft.wap">
+    <context:component-scan base-package="com.hwsoft.cms">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
     </context:component-scan>

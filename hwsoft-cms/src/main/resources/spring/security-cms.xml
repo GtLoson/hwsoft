@@ -10,7 +10,7 @@
 	<!-- 可以直接访问的资源 -->
 	<http pattern="/theme/**" security="none" />
 	<http pattern="/login.jsp" security="none"/>  
-	<http pattern="/app/download" security="none"/>  
+	<http pattern="/app/download" security="none"/>
 	<http use-expressions="true" auto-config="false" entry-point-ref="authenticationEntryPoint" 
 			realm="qianmama-mgmt" >
 		<!-- 所有的用户都必须有HTTP_BASIC 角色 -->

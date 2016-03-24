@@ -57,6 +57,20 @@ public class StaffController extends BaseController {
 		 }
 		 return getResultMap();
 	}
+
+	/***
+	 * 列表
+	 * @return
+	 */
+	@RequestMapping(value = "staff/list1")
+	@ResponseBody
+	public List list1(Integer limit,Integer offset){
+		total = (int) staffService.getTotalCount();
+		if(total > 0 ){
+			list = staffService.listAll(offset, limit);
+		}
+		return list;
+	}
 	
 	@RequestMapping(value = "staff/addInput")
     public ModelAndView addInput(){
