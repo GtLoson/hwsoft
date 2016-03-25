@@ -24,7 +24,6 @@
     <!-- Panel Other -->
     <div class="ibox float-e-margins">
         <div class="ibox-title">
-            <h5>其他</h5>
             <div class="ibox-tools">
                 <a class="collapse-link">
                     <i class="fa fa-chevron-up"></i>
@@ -48,11 +47,7 @@
                 <div class="col-sm-12">
                     <!-- Example Events -->
                     <div class="example-wrap">
-                        <h4 class="example-title">事件</h4>
                         <div class="example">
-                            <div class="alert alert-success" id="examplebtTableEventsResult" role="alert">
-                                事件结果
-                            </div>
                             <div class="btn-group hidden-xs" id="exampleTableEventsToolbar" role="group">
                                 <button type="button" class="btn btn-outline btn-default">
                                     <i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
@@ -70,7 +65,7 @@
                                     <th data-field="state" data-checkbox="true"></th>
                                     <th data-field="id">ID</th>
                                     <th data-field="name">名称</th>
-                                    <th data-field="price">价格</th>
+                                    <th data-field="realname">价格</th>
                                 </tr>
                                 </thead>
                             </table>

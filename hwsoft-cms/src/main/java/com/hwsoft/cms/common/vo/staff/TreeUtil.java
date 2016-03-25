@@ -52,7 +52,7 @@ public class TreeUtil {
 	 * @return
 	 */
 	public static List<TreeVo> functionInfoToTreeVo(List<FunctionInfo> functionInfos
-			,StaffRole staffRole){
+			,List<StaffRole> staffRoles){
 		
 		List<TreeVo> treeVos = new ArrayList<TreeVo>();
 		for(FunctionInfo info : functionInfos){
@@ -61,16 +61,18 @@ public class TreeUtil {
 			treeVo.setText(info.getName());
 			treeVo.setUrl(info.getUri());
 			List<TreeVo> childrenList = null;
-			if(null != staffRole.getFunctionInfos()){
-				for(FunctionInfo functionInfo : staffRole.getFunctionInfos()){
-					if(functionInfo.getId().intValue() == info.getId().intValue()){
-						treeVo.setChecked(true);
-						break;
+			for(StaffRole staffRole:staffRoles) {
+				if (null != staffRole.getFunctionInfos()) {
+					for (FunctionInfo functionInfo : staffRole.getFunctionInfos()) {
+						if (functionInfo.getId().intValue() == info.getId().intValue()) {
+							treeVo.setChecked(true);
+							break;
+						}
 					}
 				}
 			}
 			if(null != info.getChildren() && info.getChildren().size() != 0){
-				childrenList = functionInfoToTreeVo(info.getChildren(),staffRole);
+				childrenList = functionInfoToTreeVo(info.getChildren(),staffRoles);
 			} 
 			
 			treeVo.setChildren(childrenList);
@@ -79,4 +81,37 @@ public class TreeUtil {
 		return treeVos;
 	}
 
+
+	/**
+	 * 将function对象转换成 树
+	 * @param functionInfos
+	 * @return
+	 */
+	public static List<TreeVo> functionInfoToTreeVo(List<FunctionInfo> functionInfos
+			,StaffRole staffRole){
+
+		List<TreeVo> treeVos = new ArrayList<TreeVo>();
+		for(FunctionInfo info : functionInfos){
+			TreeVo treeVo = new TreeVo();
+			treeVo.setId(info.getId());
+			treeVo.setText(info.getName());
+			treeVo.setUrl(info.getUri());
+			List<TreeVo> childrenList = null;
+				if (null != staffRole.getFunctionInfos()) {
+					for (FunctionInfo functionInfo : staffRole.getFunctionInfos()) {
+						if (functionInfo.getId().intValue() == info.getId().intValue()) {
+							treeVo.setChecked(true);
+							break;
+						}
+					}
+				}
+			if(null != info.getChildren() && info.getChildren().size() != 0){
+				childrenList = functionInfoToTreeVo(info.getChildren(),staffRole);
+			}
+
+			treeVo.setChildren(childrenList);
+			treeVos.add(treeVo);
+		}
+		return treeVos;
+	}
 }
