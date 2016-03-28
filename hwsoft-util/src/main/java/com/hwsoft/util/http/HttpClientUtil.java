@@ -158,6 +158,7 @@ public class HttpClientUtil {
     }
     if (RequestMethod.GET.equals(requestMethod)) {
       logger.info("请求地址：" + getMethodUri.toString());
+      System.out.println("请求地址：" + getMethodUri.toString());
       HttpGet httpRequest = new HttpGet(getMethodUri.toString());
       return httpRequest;
     } else {

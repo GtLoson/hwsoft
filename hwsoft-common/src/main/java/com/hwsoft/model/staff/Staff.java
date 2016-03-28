@@ -69,7 +69,7 @@ public class Staff implements Serializable {
 	/**
 	 * 角色列表集合
 	 */
-	@ManyToMany(targetEntity = StaffRole.class, cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
+	@ManyToMany(targetEntity = StaffRole.class, cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
 	@JoinTable(name = "staff_role_associate", joinColumns = @JoinColumn(name = "staff_id"), inverseJoinColumns = @JoinColumn(name = "staff_role_id"))
 	private Set<StaffRole> roles;
 

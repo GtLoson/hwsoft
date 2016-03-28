@@ -42,7 +42,7 @@ public class FunctionInfoController extends BaseController {
 	
 	@RequestMapping(value = "functionInfo/index")
     public ModelAndView index(String status){
-		ModelAndView mv = new ModelAndView("staff/functioninfo_index");
+		ModelAndView mv = new ModelAndView("staff/function_index");
     	return mv;
 	}
 	
@@ -69,9 +69,9 @@ public class FunctionInfoController extends BaseController {
 	 */
 	@RequestMapping(value = "functionInfo/list")
 	@ResponseBody
-	public Map<String, Object> list(Integer page,Integer rows,Integer parentId){
+	public Map<String, Object> list(Integer limit,Integer offset,Integer parentId){
 		total = functionInfoService.getCountByParenId(parentId);
-		list = functionInfoService.findPageFunctionInfosByParenId(parentId, getFrom(page, rows), getPageSize(rows));
+		list = functionInfoService.findPageFunctionInfosByParenId(parentId,offset,limit);
         return getResultMap();
 	}
 	

@@ -55,10 +55,10 @@ public class StaffRoleController extends BaseController {
 	 */
 	@RequestMapping(value = "staffRole/list")
 	@ResponseBody
-	public Map<String, Object> list(HttpServletRequest request,HttpServletResponse response,Integer page,Integer rows){
+	public Map<String, Object> list(Integer limit,Integer offset){
 		 total = (int) staffRoleService.getCount();
 		 if(total > 0 ){
-			 list = staffRoleService.listAll(getFrom(page, rows), getPageSize(rows));
+			 list = staffRoleService.listAll(offset, limit);
 		 }
 		 return getResultMap();
 	}

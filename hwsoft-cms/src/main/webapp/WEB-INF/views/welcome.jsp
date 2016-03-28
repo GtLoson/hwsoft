@@ -73,7 +73,7 @@
                     </li>
 
                     <li>
-                        <a href="#"><i class="fa fa-home"></i><span class="nav-label">系统用户管理</span><span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-cog"></i><span class="nav-label">系统用户管理</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
                                 <a class="J_menuItem" href="staff/index">用户管理</a>
@@ -501,7 +501,7 @@
             <a href="login.html" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
         </div>
         <div class="row J_mainContent" id="content-main">
-            <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="index_v148b2.html?v=4.0" frameborder="0" data-id="index_v1.html" seamless></iframe>
+            <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="staff/index" frameborder="0" data-id="index_v1.html" seamless></iframe>
         </div>
         <div class="footer">
             <div class="pull-right">&copy; 2014-2015 <a href="http://www.zi-han.net/" target="_blank">zihan's blog</a>

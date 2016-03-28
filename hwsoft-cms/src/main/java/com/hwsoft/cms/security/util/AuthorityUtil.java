@@ -18,7 +18,7 @@ public class AuthorityUtil {
         ConfigAttribute ca = new SecurityConfig(AutorityConf.ROLE_ADMIN);  
         atts.add(ca);  
 		resourceMap.put("staff/list.do", atts);
-		Collection<ConfigAttribute> atts1 = new ArrayList<ConfigAttribute>();  
+		Collection<ConfigAttribute> atts1 = new ArrayList<ConfigAttribute>();
 		ConfigAttribute ca1 = new SecurityConfig(AutorityConf.ROLE_USER);
 		atts1.add(ca);  
 		atts1.add(ca1);  

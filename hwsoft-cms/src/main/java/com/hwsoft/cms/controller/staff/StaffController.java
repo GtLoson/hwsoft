@@ -40,7 +40,7 @@ public class StaffController extends BaseController {
 	
 	@RequestMapping(value = "staff/index")
     public ModelAndView index(String status){
-		ModelAndView mv = new ModelAndView("staff/index");
+		ModelAndView mv = new ModelAndView("staff/staff_index");
     	return mv;
 	}
 	
@@ -50,36 +50,21 @@ public class StaffController extends BaseController {
 	 */
 	@RequestMapping(value = "staff/list")
 	@ResponseBody
-	public Map<String, Object> list(HttpServletRequest request,HttpServletResponse response,Integer page,Integer rows){
+	public Map<String, Object> list(Integer limit,Integer offset){
 		 total = (int) staffService.getTotalCount();
 		 if(total > 0 ){
-			 list = staffService.listAll(getFrom(page, rows), getPageSize(rows));
+			 list = staffService.listAll(offset, limit);
 		 }
 		 return getResultMap();
 	}
 
-	/***
-	 * 列表
-	 * @return
-	 */
-	@RequestMapping(value = "staff/list1")
-	@ResponseBody
-	public List list1(Integer limit,Integer offset){
-		total = (int) staffService.getTotalCount();
-		if(total > 0 ){
-			list = staffService.listAll(offset, limit);
-		}
-		return list;
-	}
-	
+
 	@RequestMapping(value = "staff/addInput")
     public ModelAndView addInput(){
 		
-		ModelAndView mv = new ModelAndView("staff/add");
-		
+		ModelAndView mv = new ModelAndView("staff/staff_add");
 		List<StaffRole> roles = staffRoleService.listAllEnable();
 		mv.addObject("roles", roles);
-		
     	return mv;
 	}
 	
