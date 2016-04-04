@@ -23,7 +23,6 @@ import com.hwsoft.service.customer.CustomerService;
 import com.hwsoft.service.customer.CustomerSubAccountService;
 import com.hwsoft.service.customer.RechargeRecordService;
 import com.hwsoft.service.log.customer.CustomerSubAccountPointLogService;
-import com.hwsoft.service.order.hwsoft.RechargeOrderService;
 import com.hwsoft.service.point.CustomerSubAccountPointService;
 import com.hwsoft.util.math.CalculateUtil;
 import com.hwsoft.vo.customer.RechargeRecordVo;
@@ -46,7 +45,7 @@ public class RechargeRecordServiceImpl implements RechargeRecordService {
 	private CustomerSubAccountPointLogService customerSubAccountPointLogService;
 	
 	@Autowired
-	private RechargeOrderService rechargeOrderService;
+	private com.hwsoft.service.order.hwsoft.RechargeOrderService rechargeOrderService;
 
 	@Autowired
 	private CustomerService customerService;

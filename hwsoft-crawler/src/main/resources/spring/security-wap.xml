@@ -29,9 +29,9 @@
 	</http>
 	
 	<!-- 权限认证失败处理 -->
-	<beans:bean id="accessDeniedHandler" class="com.hwsoft.wap.security.handler.CustomerAccessDeniedHandler"/>
+	<beans:bean id="accessDeniedHandler" class="com.hwsoft.crawler.security.handler.CustomerAccessDeniedHandler"/>
 	
-	<beans:bean id="customerUsernamePasswordAuthenticationFilter" class="com.hwsoft.wap.security.filter.CustomerUsernamePasswordAuthenticationFilter">
+	<beans:bean id="customerUsernamePasswordAuthenticationFilter" class="com.hwsoft.crawler.security.filter.CustomerUsernamePasswordAuthenticationFilter">
 		<beans:property name="authenticationManager" ref="authenticationManager"/>
 		<!-- 用户名参数名称 -->
 		<beans:property name="usernameParameter" value="mobile" />
@@ -46,7 +46,7 @@
 	    <beans:property name="authenticationFailureHandler" ref="customerAuthenticationFailureHandler" />
 	</beans:bean>
 	<!-- 认证成功处理 -->
-	<beans:bean id="customerAuthenticationSuccessHandler" class="com.hwsoft.wap.security.handler.CutomerAuthenticationSuccessHandler">
+	<beans:bean id="customerAuthenticationSuccessHandler" class="com.hwsoft.crawler.security.handler.CutomerAuthenticationSuccessHandler">
 	    <beans:property name="defaultTargetUrl"  value="/loginSuccess" />
 	</beans:bean>
 	
@@ -60,7 +60,7 @@
     	<authentication-provider ref="customerSecurityAuthenticationProvider" />  
 	</authentication-manager> 
 	<!-- 用户权限处理 -->
-	<beans:bean id="filterSecurityInterceptor" class="com.hwsoft.wap.security.filter.CustomerSecurityAuthencationFilter" >
+	<beans:bean id="filterSecurityInterceptor" class="com.hwsoft.crawler.security.filter.CustomerSecurityAuthencationFilter" >
 		<!-- 用户拥有的权限 -->  
 		<beans:property name="authenticationManager" ref="authenticationManager"/>
 		<!-- 用户是否拥有所请求资源的权限 -->  
@@ -70,7 +70,7 @@
 	</beans:bean>
 	
 	<!-- 密码加密方式 ,authentication-provider 使用-->
-	<beans:bean id="passwordEncoder" class="com.hwsoft.wap.security.encoder.MD5Encoder">
+	<beans:bean id="passwordEncoder" class="com.hwsoft.crawler.security.encoder.MD5Encoder">
 		
 	</beans:bean>
 	
@@ -79,20 +79,20 @@
 		<beans:property name="useForward" value="false" />
 	</beans:bean>
 	<!-- 用户名、密码验证 -->
-	<beans:bean id="securityUserService" class="com.hwsoft.wap.security.service.StaffUserDetailService" />
+	<beans:bean id="securityUserService" class="com.hwsoft.crawler.security.service.StaffUserDetailService" />
 	
-	<beans:bean id="customerSecurityAuthenticationProvider" class="com.hwsoft.wap.security.provider.CustomerSecurityAuthenticationProvider">
+	<beans:bean id="customerSecurityAuthenticationProvider" class="com.hwsoft.crawler.security.provider.CustomerSecurityAuthenticationProvider">
 	    <beans:property name="userDetailsService" ref="securityUserService"/>
         <beans:property name="passwordEncoder" ref="passwordEncoder"/>
 	</beans:bean>
 	
 	<!-- 自定义资源权限关系认证 -->  
 	<beans:bean id="accessDecisionManager"  
-    	class="com.hwsoft.wap.security.manager.StaffAccessDecisionManager" />
+    	class="com.hwsoft.crawler.security.manager.StaffAccessDecisionManager" />
   
 	<!-- 自定义资源权限关系集合 -->  
 	<beans:bean id="securityMetadataSource"  
-    	class="com.hwsoft.wap.security.manager.StaffSecurityMetadataSource">
+    	class="com.hwsoft.crawler.security.manager.StaffSecurityMetadataSource">
 	</beans:bean>  
 	
 </beans:beans>
