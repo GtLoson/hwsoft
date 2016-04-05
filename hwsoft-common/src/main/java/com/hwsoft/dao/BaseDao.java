@@ -44,9 +44,9 @@ public abstract class BaseDao extends HibernateDaoSupport {
     }
 
 	@SuppressWarnings("unchecked")
-	protected  <T> List<T>  list(int from,int pageSize) {
+	protected  <T> List<T>  list(int begin,int offset) {
         String hql = "from " + entityClass().getName();
-        return ((List<T>)getSessionFactory().getCurrentSession().createQuery(hql).setFirstResult(from).setMaxResults(pageSize).list());
+        return ((List<T>)getSessionFactory().getCurrentSession().createQuery(hql).setFirstResult(begin).setMaxResults(offset).list());
     }
     
     protected <T> T add(T entity) {

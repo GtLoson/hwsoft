@@ -4,12 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>fdsfdsf</title>
 </head>
 <body>
-<%
-    //???
-    response.sendRedirect("/wap/register?channelId=20000");
-%>
+ok
 </body>
 </html>

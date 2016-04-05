@@ -12,7 +12,7 @@
 	<http pattern="/login.jsp" security="none"/>  
 	<http pattern="/app/download" security="none"/>
 	<http use-expressions="true" auto-config="false" entry-point-ref="authenticationEntryPoint" 
-			realm="qianmama-mgmt" >
+			realm="hwsoft-mgmt" >
 		<!-- 所有的用户都必须有HTTP_BASIC 角色 -->
 		<!--<intercept-url pattern="/**" access="isAuthenticated()" />
 		-->
@@ -81,7 +81,7 @@
 		<beans:property name="useForward" value="false" />
 	</beans:bean><!--
 	<beans:bean id="authenticationEntryPoint" class="org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint">
-		<beans:property name="realmName" value="qianmama-mgmt" />
+		<beans:property name="realmName" value="hwsoft-mgmt" />
 	</beans:bean>
 	-->
 	<!-- 用户名、密码验证 -->

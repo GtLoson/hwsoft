@@ -40,7 +40,7 @@ public enum AppOSType {
     OS_WAP(){
         @Override
         public String toString() {
-            return "wap";
+            return "wap1";
         }
     };
     /**

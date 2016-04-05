@@ -7,9 +7,6 @@
 <title>fdsfdsf</title>
 </head>
 <body>
-<%
-    //???
-    response.sendRedirect("/wap/register?channelId=20000");
-%>
+
 </body>
 </html>

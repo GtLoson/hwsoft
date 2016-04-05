@@ -7,7 +7,7 @@
   <display-name>hwsoft-wap</display-name>
     <context-param>
         <param-name>webAppRootKey</param-name>
-        <param-value>hwsoft-wap</param-value>
+        <param-value>wap.root</param-value>
     </context-param>
     <context-param>
 		<param-name>contextConfigLocation</param-name>
