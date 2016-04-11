@@ -95,3 +95,19 @@
 
 <!-- Mirrored from www.zi-han.net/theme/hplus/form_validate.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:19:16 GMT -->
 </html>
+
+<script>
+    <!--异步提交表单验证-->
+    $(function (){
+        var options = {
+            beforeSubmit : function() {
+            },
+            error : function() {
+            },
+            success : function(data) {
+            }
+        };
+        $('#addProductForm').ajaxForm(options);
+    });
+
+</script>
