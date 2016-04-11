@@ -15,16 +15,16 @@
         <!--<property name="username" value="root" />-->
         <!--<property name="password" value="123456" />-->
 
-        <property name="url" value="jdbc:mysql://localhost:3306/hwsoft_v3?useUnicode=true&amp;characterEncoding=UTF-8" />
-        <property name="username" value="hwsoft" />
-        <property name="password" value="Qmm123.hwsoft" />
+        <property name="url" value="jdbc:mysql://120.24.48.86:3306/hwsoft?useUnicode=true&amp;characterEncoding=UTF-8" />
+        <property name="username" value="root" />
+        <property name="password" value="123456" />
         
         <!-- 初始化连接大小 -->
         <property name="initialSize" value="2" />
         <!-- 连接池最大使用连接数量 -->
         <property name="maxActive" value="30" />
         <!-- 连接池最大空闲 -->
-        <property name="maxIdle" value="2" />
+        <!--<property name="maxIdle" value="2" />-->
         <!-- 连接池最小空闲 -->
         <property name="minIdle" value="1" />
         <!-- 获取连接最大等待时间 -->

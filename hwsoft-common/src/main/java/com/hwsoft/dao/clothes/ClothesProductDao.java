@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by arvin on 16/4/3.
  */
-@Repository
+@Repository("clothesProductDao")
 public class ClothesProductDao extends BaseDao{
 
     @Override

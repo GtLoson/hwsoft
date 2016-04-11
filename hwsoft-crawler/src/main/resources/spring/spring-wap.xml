@@ -17,7 +17,19 @@
   	
     <!-- import core configuration -->
     <import resource="classpath:spring/spring-common.xml"/>
-    
+
+       <bean id="messageSource"
+             class="com.hwsoft.spring.MessageSource">
+              <property name="useCodeAsDefaultMessage" value="true"/>
+              <property name="defaultEncoding" value="UTF-8"/>
+              <property name="basenames">
+                     <list>
+                            <value>classpath:properties/wap-message</value>
+
+                            <value>classpath:properties/common-message</value>
+                     </list>
+              </property>
+       </bean>
 	<!-- 持久层管理配置 -->
 	<import resource="classpath:persistence/mobile-applicationContext-persistence.xml" />
 	

@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by arvin on 16/4/3.
  */
-@Service
+@Service("clothesProductService")
 public class ClothesProductServiceImpl implements ClothesProductService {
 
     Logger  logger = LoggerFactory.getLogger(this.getClass().getName());
@@ -72,6 +72,7 @@ public class ClothesProductServiceImpl implements ClothesProductService {
     public Integer saveBatch(List<ClothesProduct> clothes) {
         for (ClothesProduct cloth:clothes){
             try{
+                System.out.println(cloth.toString());
                 this.save(cloth);
             }catch (Exception e){
                 logger.error("批量保存异常：",e);
