@@ -20,6 +20,9 @@ public class Category extends BaseModel {
 	@Column(name = "name", length = 64, nullable = false)
 	private String name;
 
+	@Column(name = "url", length = 128, nullable = false)
+	private String url;
+
 	@Column(name = "desc", length = 256, nullable = false)
 	private String desc;
 
@@ -54,6 +57,14 @@ public class Category extends BaseModel {
 
 	public void setCategoryLevel(CategoryLevel categoryLevel) {
 		this.categoryLevel = categoryLevel;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 }
 

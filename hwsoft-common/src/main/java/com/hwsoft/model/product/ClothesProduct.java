@@ -5,6 +5,7 @@ package com.hwsoft.model.product;
 
 import com.hwsoft.common.product.*;
 import com.hwsoft.model.BaseModel;
+import org.apache.commons.lang.builder.ToStringBuilder;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
@@ -19,7 +20,6 @@ import java.util.List;
  */
 @Entity
 @Table(name = "clothes_product")
-@Audited
 public class ClothesProduct extends BaseModel implements Serializable {
 
   /**
@@ -29,6 +29,8 @@ public class ClothesProduct extends BaseModel implements Serializable {
   @Column(name = "id", nullable = false)
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
+
+
 
   @Column(name = "sort_parameter", nullable = true)
   private Integer sortParameter;
@@ -55,7 +57,7 @@ public class ClothesProduct extends BaseModel implements Serializable {
   /**
    * 计划描述
    */
-  @Column(name = "product_desc", columnDefinition = "TEXT", nullable = false)
+  @Column(name = "product_desc", columnDefinition = "TEXT", nullable = true)
   private String productDesc;
 
   /**
@@ -104,7 +106,7 @@ public class ClothesProduct extends BaseModel implements Serializable {
   @Column(name = "total_amount", scale = 4, precision = 16, columnDefinition = "decimal(16,2) DEFAULT 0")
   private double totalAmount;
 
-  @Column(name = "recommend", nullable = false)
+  @Column(name = "recommend", nullable = true)
   private boolean recommend;
 
   @ElementCollection
@@ -115,17 +117,17 @@ public class ClothesProduct extends BaseModel implements Serializable {
   /**
    * 渠道id
    */
-  @Column(name = "product_channel_id", nullable = false)
+  @Column(name = "product_channel_id", nullable = true)
   private int productChannelId;
 
   /**
    * 产品状态
    */
   @Enumerated(EnumType.STRING)
-  @Column(name = "product_status", length = 32, nullable = false)
+  @Column(name = "product_status", length = 32, nullable = true)
   private ProductStatus productStatus;
 
-  @Column(name = "product_detail_url", nullable = false)
+  @Column(name = "product_detail_url", nullable = true)
   private String productDetailUrl;
 
   public int getProductChannelId() {
@@ -271,5 +273,10 @@ public class ClothesProduct extends BaseModel implements Serializable {
 
   public void setProductDetailUrl(String productDetailUrl) {
     this.productDetailUrl = productDetailUrl;
+  }
+
+  @Override
+  public String toString() {
+    return ToStringBuilder.reflectionToString(this);
   }
 }
