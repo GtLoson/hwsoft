@@ -5,6 +5,9 @@ import com.hwsoft.crawler.controller.ProductController;
 import com.hwsoft.crawler.controller.Test;
 import com.hwsoft.model.banner.Banner;
 import com.hwsoft.model.category.Category;
+import com.hwsoft.service.banner.BannerService;
+import com.hwsoft.service.category.CategoryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import us.codecraft.webmagic.ResultItems;
 import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.pipeline.Pipeline;
@@ -16,18 +19,25 @@ import java.util.List;
  */
 public class IndexPagePipeline implements Pipeline {
 
-        public IndexPagePipeline() {
-        }
+    @Autowired
+    CategoryService categoryService;
 
-        public void process(ResultItems resultItems, Task task) {
-            List<Category> categories = resultItems.get("categories");
-            List<Banner> banners = resultItems.get("banners");
-            System.out.println("categories="+ JSON.toJSONString(categories));
-            System.out.println("banners="+ JSON.toJSONString(banners));
+    @Autowired
+    BannerService bannerService;
 
-            Test.getCategoryService().saveBatch(categories);
-
-            Test.getBannerService().saveBatch(banners);
-
-        }
+    public IndexPagePipeline() {
     }
+
+    public void process(ResultItems resultItems, Task task) {
+
+        List<Category> categories = resultItems.get("categories");
+        List<Banner> banners = resultItems.get("banners");
+        System.out.println("categories="+ JSON.toJSONString(categories));
+        System.out.println("banners="+ JSON.toJSONString(banners));
+
+        categoryService.saveBatch(categories);
+
+        bannerService.saveBatch(banners);
+
+    }
+}

@@ -22,6 +22,9 @@ public class Category extends BaseModel implements Serializable{
 	@Column(name = "name", length = 64, nullable = false)
 	private String name;
 
+	@Column(name = "code", length = 64, nullable = false)
+	private String code;
+
 	@Column(name = "url", length = 128, nullable = true)
 	private String url;
 
@@ -77,6 +80,14 @@ public class Category extends BaseModel implements Serializable{
 
 	public void setChildren(List<Category> children) {
 		this.children = children;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 }
 

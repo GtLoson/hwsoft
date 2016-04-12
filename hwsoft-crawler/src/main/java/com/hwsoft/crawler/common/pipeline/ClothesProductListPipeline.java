@@ -2,6 +2,8 @@ package com.hwsoft.crawler.common.pipeline;
 
 import com.hwsoft.crawler.controller.Test;
 import com.hwsoft.model.product.ClothesProduct;
+import com.hwsoft.service.clothes.ClothesProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import us.codecraft.webmagic.ResultItems;
 import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.pipeline.Pipeline;
@@ -12,6 +14,9 @@ import java.util.List;
  * Created by arvin on 16/4/10.
  */
 public class ClothesProductListPipeline implements Pipeline {
+
+    @Autowired
+    ClothesProductService clothesProductService;
 
     public ClothesProductListPipeline() {
     }
@@ -27,6 +32,6 @@ public class ClothesProductListPipeline implements Pipeline {
             System.out.println(product.getProductDetailUrl());
 
         }
-        Test.getClothesProductService().saveBatch(clothesProductList);
+        clothesProductService.saveBatch(clothesProductList);
     }
 }

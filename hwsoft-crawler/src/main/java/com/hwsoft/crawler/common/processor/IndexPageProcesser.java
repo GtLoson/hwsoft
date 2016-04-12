@@ -49,6 +49,7 @@ class IndexPageProcesser implements PageProcessor {
             mainCategory.setCreateTime(new Date());
             mainCategory.setCreateUserId(0);
             mainCategory.setDesc(mainCategoryTitle);
+            mainCategory.setCode(mainCategoryHref.substring(mainCategoryHref.lastIndexOf("/")+1));
 
             List<Category> children = Lists.newArrayList();
             for(int i=0;i<titles.size();i++){
@@ -60,6 +61,7 @@ class IndexPageProcesser implements PageProcessor {
                 childrenCategory.setCreateTime(new Date());
                 childrenCategory.setCreateUserId(0);
                 childrenCategory.setDesc(title);
+                mainCategory.setCode(href.substring(href.lastIndexOf("/") + 1));
                 children.add(childrenCategory);
             }
             mainCategory.setChildren(children);

@@ -51,7 +51,7 @@ public class ClothesProduct extends BaseModel implements Serializable {
   /**
    * 促销价格
    */
-  @Column(name = "product_promote_price", length = 128, nullable = false)
+  @Column(name = "product_promote_price", length = 128, nullable = true)
   private Double productPromotePrice;
 
   /**
