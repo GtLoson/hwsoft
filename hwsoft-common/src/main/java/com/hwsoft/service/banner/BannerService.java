@@ -1,8 +1,7 @@
 package com.hwsoft.service.banner;
 
-import com.hwsoft.common.version.AppOSType;
+
 import com.hwsoft.model.banner.Banner;
-import com.hwsoft.model.file.CustomFile;
 
 import java.util.List;
 
@@ -12,100 +11,51 @@ import java.util.List;
 public interface BannerService {
 
     /**
-     * 根据Id获取banner
-     *
-     * @param id id
-     * @return banner
-     */
-    public Banner getBannerById(int id);
-
-    /**
-     * 根据类型获取banner
-     *
-     * @param appOSTypes os
-     * @return banners
-     */
-    public List<Banner> getBannersByOSType(AppOSType... appOSTypes);
-
-    /**
-     * 添加banner
-     *
-     * @param picPath 文件
-     * @param bannerName name
-     * @param htmlTitle  网页标题
-     * @param htmlURL    网页地址
-     * @param osType     系统类型
-     * @param enable     是否可用
-     * @return 添加的banner
-     */
-    public Banner addBanner(String picPath,
-                            String bannerName,
-                            String htmlTitle,
-                            String htmlURL,
-                            String osType,
-                            boolean enable,
-                            Integer sortParameter);
-
-    /**
-     * 更新banner
-     *
-     * @param picPath    文件
-     * @param bannerName    name
-     * @param htmlTitle     title
-     * @param htmlURL       url
-     * @param osType        os
-     * @param enable        enable
-     * @param sortParameter sort
+     * 保存一个Category对象
+     * @param banner
      * @return
      */
-    public Banner updateBanner(Integer bannerId,
-                               String picPath,
-                               String bannerName,
-                               String htmlTitle,
-                               String htmlURL,
-                               String osType,
-                               boolean enable,
-                               Integer sortParameter);
+    public Banner save(Banner banner);
 
     /**
-     * 根据系统版本获取总数量
-     *
+     * 修改Category对象
+     * @param banner
      * @return
      */
-    public long getTotalCount(AppOSType... osTypes);
+    public Banner update(Banner banner);
 
     /**
-     * 获取对应系统的banner
-     *
-     * @param from     from
-     * @param pageSize size
-     * @param osTypes  os
+     * 根据ID获取一个Category对象
+     * @param id
      * @return
      */
-    public List<Banner> listAll(int from, int pageSize, AppOSType... osTypes);
+    public Banner get(Integer id);
 
     /**
-     * 启用banner
-     *
-     * @param bannerId id
+     * 查询所有
      * @return
      */
-    public Banner enableBanner(Integer bannerId);
+    public List<Banner> getAll();
 
     /**
-     * 禁用banner
-     *
-     * @param bannerId id
+     * 分页查询
+     * @param begin
+     * @param offset
      * @return
      */
-    public Banner disableBanner(Integer bannerId);
-    
-    
+    public List<Banner> getPaginationList(Integer begin,Integer offset);
+
     /**
-     * 根据类型获取banner
-     *
-     * @param appOSTypes os
-     * @return banners
+     * 批量更新
+     * @param banners
+     * @return
      */
-    public List<Banner> getBannersEnable();
+    public Integer updateBatch(List<Banner> banners);
+
+    /**
+     * 批量保存
+     * @param banners
+     * @return
+     */
+    public Integer saveBatch(List<Banner> banners);
 }

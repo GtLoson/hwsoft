@@ -1,10 +1,7 @@
 package com.hwsoft.crawler.common.pipeline;
 
-import com.hwsoft.crawler.controller.ProductController;
+import com.hwsoft.crawler.controller.Test;
 import com.hwsoft.model.product.ClothesProduct;
-import com.hwsoft.service.clothes.ClothesProductService;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import us.codecraft.webmagic.ResultItems;
 import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.pipeline.Pipeline;
@@ -29,7 +26,7 @@ public class ClothesProductListPipeline implements Pipeline {
             System.out.println(product.getImageUrl());
             System.out.println(product.getProductDetailUrl());
 
-            ProductController.getClothesProductService().save(product);
         }
+        Test.getClothesProductService().saveBatch(clothesProductList);
     }
 }

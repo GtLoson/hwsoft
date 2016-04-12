@@ -1,10 +1,12 @@
 package com.hwsoft.crawler.common.processor;
 
 import com.google.common.collect.Lists;
+import com.hwsoft.crawler.common.config.Conf;
 import com.hwsoft.crawler.controller.ProductController;
 import com.hwsoft.model.product.ClothesProduct;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
 import us.codecraft.webmagic.selector.Html;
 
@@ -15,45 +17,32 @@ import java.util.List;
  */
 public class ClothesProductListPageProcesser implements PageProcessor {
 
-
-
-
-    private String level_name;
     public ClothesProductListPageProcesser(){}
-    public ClothesProductListPageProcesser(String level_name){this.level_name = level_name;}
 
-    private Site site = Site.me().setDomain("www.diyihy.com");
+    private Site site = Site.me().setDomain(Conf.DOMAIN);
 
     @Override
     public void process(Page page) {
-        //组装所需要的product首页信息
-        List<String> productList = page.getHtml().$("div.gallery").all();
 
-        for(String product:productList){
-            Html html = new Html(product);
-            List<String> productNameList = html.xpath("//div[@class='product_name']/a/text()").all();
-            List<String> productPriceList = html.xpath("//div[@class='product_money']/span[@class='markmoney']/del/text()").all();
-            List<String> productPromotePriceList = html.xpath("//div[@class='product_money']/span[@class='thmoney']/text()").all();
-            List<String> imageUrlList = html.xpath("//div[@class='product']/ul/li/a/img/@src").all();
-            List<String> productDetailList = html.xpath("//div[@class='product']/ul/li[@class='pro_imgli']/a/@href").all();
-            for(int i=0;i< productNameList.size();i++){
-                ClothesProduct clothesProduct = new ClothesProduct();
-                clothesProduct.setProductName(productNameList.get(i));
-                clothesProduct.setProductPrice(Double.parseDouble(productPriceList.get(i)
-                        .replace("￥", "")
-                        .replace("元", "")
-                        .trim()));
-                clothesProduct.setProductPromotePrice(Double.parseDouble(productPromotePriceList.get(i)
-                        .replace("￥", "")
-                        .replace("元", "")
-                        .replace("促销价：", "")
-                        .trim()));
-                clothesProduct.setImageUrl(imageUrlList);
-                clothesProduct.setProductDetailUrl(productDetailList.get(i));
-                ProductController.clothesProductList.add(clothesProduct);
-            }
+        String pageStr = page.getHtml().toString();
+        String path = pageStr.substring(pageStr.indexOf("jQuery.get('")+1,pageStr.indexOf("', function(json){"));//填充金额
+
+        //组装所需要的product首页信息
+        List<String> galleryList = page.getHtml().$("div.module-gallery-01").all();
+        List<ClothesProduct> clothesProductList = Lists.newArrayList();
+        for(String gallery:galleryList){
+            Html html = new Html(gallery);
+            String  detailUrl = html.xpath("//div[@class='gallery-image']/a/@href").toString();//详情链接
+            String  showImageUrl = html.xpath("//div[@class='gallery-image']/a/img/@initSrc").toString();//图片链接
+
+
+
+            html.xpath("//div[@class='title-area']/a/@href").toString();//详情链接
+            html.xpath("//div[@class='title-area']/a/@href").toString();//详情链接
+            html.xpath("//div[@class='title-area']/a/@title").toString();//详情链接
+
         }
-        page.putField("clothesProductList", ProductController.clothesProductList);
+        page.putField("clothesProductList", clothesProductList);
 
 
         //分页信息

@@ -24,59 +24,72 @@ class IndexPageProcesser implements PageProcessor {
     @Override
     public void process(Page page) {
         //获取分类
-        List<String> divCategoryList = page.getHtml().$("div.m-pop dis").all();
-        List<Category> menus = Lists.newArrayList();
+        List<Category> categories = getCategories(page);
+        page.putField("categories", categories);
+        //获取banner
+        List<Banner>   banners = getBanners(page);
+        page.putField("banners", banners);
+
+    }
+
+    public List<Category> getCategories(Page page){
+        List<String> divCategoryList = page.getHtml().$("div.m-pop").all();
+        List<Category> categories = Lists.newArrayList();
         for(String div:divCategoryList){
+
             Html html = new Html(div);
-            String defaultTitle = html.xpath("//dl/dt/a/@title").toString();
-            String defaultHref = html.xpath("//dl/dt/a/@href").toString();
+            String mainCategoryTitle = html.xpath("//dl/dt/a/@title").toString();
+            String mainCategoryHref = html.xpath("//dl/dt/a/@href").toString();
             List<String> titles = html.xpath("//dl/dd/a/@title").all();
             List<String> hrefs = html.xpath("//dl/dd/a/@href").all();
 
-            Category defaultCategory = new Category();
-            defaultCategory.setName(defaultTitle);
-            defaultCategory.setUrl(defaultHref);
-            defaultCategory.setCategoryLevel(CategoryLevel.LEVEL1);
-            menus.add(defaultCategory);
+            Category mainCategory = new Category();
+            mainCategory.setName(mainCategoryTitle);
+            mainCategory.setUrl(mainCategoryHref);
+            mainCategory.setCreateTime(new Date());
+            mainCategory.setCreateUserId(0);
+            mainCategory.setDesc(mainCategoryTitle);
 
+            List<Category> children = Lists.newArrayList();
             for(int i=0;i<titles.size();i++){
                 String title = titles.get(i);
                 String href = hrefs.get(i);
-                Category category = new Category();
-                category.setName(title);
-                category.setUrl(href);
-                category.setCategoryLevel(CategoryLevel.LEVEL2);
-                menus.add(category);
+                Category childrenCategory = new Category();
+                childrenCategory.setName(title);
+                childrenCategory.setUrl(href);
+                childrenCategory.setCreateTime(new Date());
+                childrenCategory.setCreateUserId(0);
+                childrenCategory.setDesc(title);
+                children.add(childrenCategory);
             }
+            mainCategory.setChildren(children);
+
+            categories.add(mainCategory);
         }
+        return  categories;
+    }
 
 
-        page.putField("menus", menus);
-
+    public List<Banner> getBanners(Page page){
         //获得banner
-
-        List<String> bannerLis = page.getHtml().$("div.slide-1 slide").all();
+        List<Banner> banners = Lists.newArrayList();
+        List<String> bannerLis = page.getHtml().$("div.module-slider-03").all();
         for(String li : bannerLis){
             Html html = new Html(li);
-            List<String> bannerTitle = html.xpath("//ul/dd/a/@title").all();
-            List<String> bannerHref = html.xpath("//ul/dd/a/@href").all();
-            List<String> bannerImage = html.xpath("//ul/li/img/@src").all();
+            List<String> bannerTitle = html.xpath("//a/@title").all();
+            List<String> bannerHref = html.xpath("//a/@href").all();
+            List<String> bannerImage = html.xpath("//img/@src").all();
             for(int i=0;i<bannerTitle.size();i++){
                 Banner banner = new Banner();
                 banner.setHtmlTitle(bannerTitle.get(i));
                 banner.setHtmlURL(bannerHref.get(i));
-                banner.setCreateTime(new Date());
                 banner.setEnable(true);
                 banner.setImageURI(bannerImage.get(i));
-                ProductController.getBannerService().addBanner(banner.getImageURI(), banner.getHtmlTitle(), banner.getHtmlTitle(), banner.getHtmlURL(), "", true, 1);
+                banner.setCreateTime(new Date());
+                banners.add(banner);
             }
         }
-
-
-
-
-        page.putField("menus", menus);
-
+        return banners;
     }
 
     @Override

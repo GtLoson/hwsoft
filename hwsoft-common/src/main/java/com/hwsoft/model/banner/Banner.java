@@ -4,8 +4,10 @@
 package com.hwsoft.model.banner;
 
 import com.hwsoft.common.version.AppOSType;
+import com.hwsoft.model.BaseModel;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -15,7 +17,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "banner")
-public class Banner {
+public class Banner extends BaseModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -58,19 +60,6 @@ public class Banner {
     @Column(name = "enable", nullable = true)
     private boolean enable = true;// 是否可用
 
-    /**
-     * 创建时间
-     */
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "create_time", nullable = true)
-    private Date createTime;
-
-    /**
-     * 最近更新时间
-     */
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "update_time", nullable = true)
-    private Date updateTime;
 
     /**
      * 排序参数
@@ -124,22 +113,6 @@ public class Banner {
 
     public void setHtmlTitle(String htmlTitle) {
         this.htmlTitle = htmlTitle;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
     }
 
     public String getHtmlURL() {

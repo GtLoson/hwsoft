@@ -1,8 +1,11 @@
 package com.hwsoft.service.clothes.impl;
 
 import com.hwsoft.dao.clothes.ClothesProductDao;
+import com.hwsoft.model.category.Category;
 import com.hwsoft.model.product.ClothesProduct;
 import com.hwsoft.service.clothes.ClothesProductService;
+import org.hibernate.Transaction;
+import org.hibernate.classic.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -56,30 +60,40 @@ public class ClothesProductServiceImpl implements ClothesProductService {
     @Override
     @Transactional(propagation= Propagation.REQUIRED,rollbackFor=RuntimeException.class)
     public Integer updateBatch(List<ClothesProduct> clothes) {
-        for (ClothesProduct cloth:clothes){
-            try{
-                this.update(cloth);
-            }catch (Exception e){
-                logger.error("批量更新异常：",e);
-                continue;
+        Session session = clothesProductDao.getHibernateTemplate().getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+        Iterator<ClothesProduct> i$ = clothes.iterator();
+        int updateCounts=0;
+        while ( i$.hasNext() ) {
+            session.update(i$.next());
+            if ( ++updateCounts % 20 == 0 ) {
+                session.flush();
+                session.clear();
             }
         }
-        return null;
+        tx.commit();
+        session.close();
+        return updateCounts;
     }
 
     @Override
     @Transactional(propagation= Propagation.REQUIRED,rollbackFor=RuntimeException.class)
     public Integer saveBatch(List<ClothesProduct> clothes) {
-        for (ClothesProduct cloth:clothes){
-            try{
-                System.out.println(cloth.toString());
-                this.save(cloth);
-            }catch (Exception e){
-                logger.error("批量保存异常：",e);
-                continue;
+        Session session = clothesProductDao.getHibernateTemplate().getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+        Iterator<ClothesProduct> i$ = clothes.iterator();
+        int saveCounts=0;
+        while ( i$.hasNext() ) {
+            ClothesProduct cloth = i$.next();
+            session.save(cloth);
+            if ( ++saveCounts % 20 == 0 ) {
+                session.flush();
+                session.clear();
             }
         }
-        return null;
+        tx.commit();
+        session.close();
+        return saveCounts;
     }
 
 }

@@ -2,39 +2,41 @@ package com.hwsoft.model;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
-public class BaseModel {
+@MappedSuperclass
+@Inheritance(strategy=InheritanceType.JOINED)
+public class BaseModel implements Serializable {
 
+	@Column(name = "create_user_id", nullable = true, length=11)
+	private Integer createUserId;
 
-	@Column(name = "create_user", nullable = false, length=11)
-	private Integer createUser;
-
-	@Column(name = "update_user", nullable = false, length=11)
-	private Integer updateUser;
+	@Column(name = "update_user_id", nullable = true, length=11)
+	private Integer updateUserId;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "create_time", nullable = false)
+	@Column(name = "create_time", nullable = true)
 	private Date createTime;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "update_time", nullable = false)
+	@Column(name = "update_time", nullable = true)
 	private Date updateTime;
 
-	public Integer getCreateUser() {
-		return createUser;
+	public Integer getCreateUserId() {
+		return createUserId;
 	}
 
-	public void setCreateUser(Integer createUser) {
-		this.createUser = createUser;
+	public void setCreateUserId(Integer createUserId) {
+		this.createUserId = createUserId;
 	}
 
-	public Integer getUpdateUser() {
-		return updateUser;
+	public Integer getUpdateUserId() {
+		return updateUserId;
 	}
 
-	public void setUpdateUser(Integer updateUser) {
-		this.updateUser = updateUser;
+	public void setUpdateUserId(Integer updateUserId) {
+		this.updateUserId = updateUserId;
 	}
 
 	public Date getCreateTime() {
