@@ -1,3 +1,4 @@
+/*
 package com.hwsoft.wechat.manager.faceplus;
 
 import com.facepp.http.HttpRequests;
@@ -5,9 +6,11 @@ import com.facepp.http.PostParameters;
 import com.facepp.result.FaceppResult;
 import com.jfinal.weixin.sdk.msg.out.OutTextMsg;
 
+*/
 /**
  * Created by arvin on 16/3/29.
- */
+ *//*
+
 public class FacePlusRequestManager {
 
     private static final boolean DEBUG = true;
@@ -36,3 +39,4 @@ public class FacePlusRequestManager {
     }
 
 }
+*/

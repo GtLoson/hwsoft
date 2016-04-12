@@ -1,3 +1,4 @@
+/*
 package com.hwsoft.wechat.manager.faceplus;
 
 import com.facepp.http.PostParameters;
@@ -7,9 +8,11 @@ import com.jfinal.weixin.sdk.msg.out.OutMsg;
 import com.jfinal.weixin.sdk.msg.out.OutTextMsg;
 
 
+*/
 /**
  * Created by Administrator on 2016/3/21.
- */
+ *//*
+
 public class FacePlusOutMsg extends OutMsg {
 
 
@@ -30,3 +33,4 @@ public class FacePlusOutMsg extends OutMsg {
     }
 
 }
+*/

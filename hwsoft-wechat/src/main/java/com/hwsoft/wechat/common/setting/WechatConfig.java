@@ -1,12 +1,17 @@
 package com.hwsoft.wechat.common.setting;
 
+import com.google.common.cache.Cache;
 import com.hwsoft.wechat.controller.WechatApiController;
 import com.hwsoft.wechat.controller.WechatMsgController;
 import com.jfinal.config.*;
 import com.jfinal.core.JFinal;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.activerecord.Config;
+import com.jfinal.plugin.activerecord.Db;
+import com.jfinal.plugin.activerecord.DbKit;
+import com.jfinal.plugin.activerecord.cache.EhCache;
 import com.jfinal.plugin.c3p0.C3p0Plugin;
+import com.jfinal.plugin.ehcache.CacheKit;
 import com.jfinal.plugin.ehcache.EhCachePlugin;
 import com.jfinal.render.ViewType;
 import com.hwsoft.wechat.common.GlobInterceptor;
@@ -55,19 +60,19 @@ public class WechatConfig extends JFinalConfig{
 
         public void configPlugin(Plugins me) {
 
-/*            C3p0Plugin c3p0Plugin = new C3p0Plugin(getProperty("jdbcUrl"), getProperty("user"), getProperty("password").trim());
+            //C3p0Plugin 插件配置
+            C3p0Plugin c3p0Plugin = new C3p0Plugin(getProperty("jdbcUrl"), getProperty("user"), getProperty("password").trim());
             me.add(c3p0Plugin);
 
-            // 配置ActiveRecord插件：数据库映射
-            ActiveRecordPlugin activeRecordPlugin = new ActiveRecordPlugin(c3p0Plugin);
+            //ActiveRecordPlugin插件配置
+            ActiveRecordPlugin activeRecordPlugin = new ActiveRecordPlugin("mysql",c3p0Plugin);
             me.add(activeRecordPlugin);
-            activeRecordPlugin.addMapping("blog", null);	// 映射Blog.class 表到 Blog模型
-            activeRecordPlugin.addMapping("apply_order", null);*/
+            activeRecordPlugin.setShowSql(true);
+            activeRecordPlugin.setCache(new EhCache());
 
-            //
+            //缓存
             EhCachePlugin ehCachePlugin = new EhCachePlugin();
             me.add(ehCachePlugin);
-
         }
         public void afterJFinalStart() {
             String defaultPage = getProperty("defaultPage");
@@ -93,6 +98,7 @@ public class WechatConfig extends JFinalConfig{
 
         public static void main(String[] args) {
             JFinal.start("webapp", 80, "/", 5);
+            //Db.use("mysql").find("select * from user");
         }
 
 }

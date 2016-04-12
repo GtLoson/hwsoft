@@ -1,6 +1,5 @@
 package com.hwsoft.wechat.controller;
 
-import com.hwsoft.wechat.manager.faceplus.FacePlusOutMsg;
 import com.jfinal.kit.PropKit;
 import com.jfinal.weixin.sdk.api.ApiConfig;
 import com.jfinal.weixin.sdk.api.ApiResult;
@@ -97,10 +96,10 @@ public class WechatMsgController extends MsgController {
   @Override
   protected void processInImageMsg(InImageMsg inImageMsg) {
     //人脸识别
-
+/*
     FacePlusOutMsg facePlus = new FacePlusOutMsg(inImageMsg);
 
-    render(facePlus.getOutTextMsg());
+    render(facePlus.getOutTextMsg());*/
   }
 
   @Override
