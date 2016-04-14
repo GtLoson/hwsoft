@@ -9,7 +9,7 @@
 	<!-- 可以直接访问的资源 -->
 	<http pattern="/theme/**" security="none" />
 	<http pattern="/script/**" security="none" />
-	<http pattern="/index" security="none" />
+	<http pattern="/index/**" security="none" />
 	<http pattern="/download" security="none"/>
 	<http pattern="/autoDownload" security="none"/>
 	<http use-expressions="true" auto-config="false" entry-point-ref="authenticationEntryPoint"

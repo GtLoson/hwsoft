@@ -1,6 +1,5 @@
 package com.hwsoft.crawler.common.pipeline;
 
-import com.hwsoft.crawler.controller.Test;
 import com.hwsoft.model.product.ClothesProduct;
 import com.hwsoft.service.clothes.ClothesProductService;
 import org.springframework.beans.factory.annotation.Autowired;

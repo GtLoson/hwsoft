@@ -1,8 +1,6 @@
 package com.hwsoft.crawler.common.pipeline;
 
 import com.alibaba.fastjson.JSON;
-import com.hwsoft.crawler.controller.ProductController;
-import com.hwsoft.crawler.controller.Test;
 import com.hwsoft.model.banner.Banner;
 import com.hwsoft.model.category.Category;
 import com.hwsoft.service.banner.BannerService;

@@ -1,8 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="b" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
+  <b:base></b:base>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -64,10 +66,14 @@
 
           <!--banner-->
           <div class="swiper-container">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide"><img src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i1/TB1n3rZHFXXXXX9XFXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg" width="200px" height="120px" alt=""></div>
-              <div class="swiper-slide"><img src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i4/TB10rkPGVXXXXXGapXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg" width="200px" height="120px" alt=""></div>
-              <div class="swiper-slide"><img src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i1/TB1kQI3HpXXXXbSXFXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg" width="200px" height="120px" alt=""></div>
+            <div class="swiper-wrapper" id = "banners">
+              <%--<script id="banner-template" type="text/x-handlebars-template">--%>
+              <%--{{#banners}}--%>
+              <c:forEach items="${banners}" var="item">
+                <div class="swiper-slide"><img src="${item.imageURI}" width="100%" height="120px" alt=""></div>
+              </c:forEach>
+              <%--{{/banners}}--%>
+              <%--</script>--%>
             </div>
             <!-- Add Pagination -->
             <div class="swiper-pagination"></div>
@@ -176,9 +182,49 @@
 <!-- Path to Framework7 Library JS-->
 <script type="text/javascript" src="theme/dist/js/framework7.min.js"></script>
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+<script type="text/javascript" src = "theme/dist/js/handlebars.min.js"></script>
 <!-- Path to your app js-->
 <script type="text/javascript" src="theme/dist/js/my-app.js"></script>
 <script>
+
+  $(document).ready(function(){
+//    var template = Handlebars.compile($("#banner-template").html());
+//    $('#banners').html(template(banners()));
+//    function banners(){
+//      var data;
+    $.ajax({
+      type: "GET",
+      url: "index/banners.json",
+      data: {},
+      dataType: "json",
+      ascyn:true,
+      beforeSend:function(XMLHttpRequest){
+        //提交前处理
+      },
+      success: function(data){
+        var html='';
+        $.each(data, function(index, banner){
+          html += '<div class="swiper-slide"><img src="'+banner['imageURI']+'" width="200px" height="120px" alt=""></div>';
+          alert(html);
+        });
+        $('#banners').html(html);
+      },
+      dataFilter:function(data, type){
+        //返回处理后的数据
+        return data;
+      },
+      error:function(XMLHttpRequest, textStatus, errorThrown){
+      },
+      complete:function(XMLHttpRequest, textStatus){
+        //请求完成调用
+      }
+    });
+//      return data;
+//    }
+  });
+
+
+
   var swiper = new Swiper('.swiper-container', {
     pagination: '.swiper-pagination',
     nextButton: '.swiper-button-next',

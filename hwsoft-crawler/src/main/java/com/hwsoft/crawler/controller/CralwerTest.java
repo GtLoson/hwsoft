@@ -27,7 +27,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/4/12.
  */
-public class Test  {
+public class CralwerTest {
 
     static  ApplicationContext ctx;
 
