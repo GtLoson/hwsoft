@@ -7,53 +7,28 @@ import com.hwsoft.crawler.common.processor.ClothesProductListPageProcesser;
 import com.hwsoft.crawler.common.processor.IndexPageProcesser;
 import com.hwsoft.crawler.common.scheduler.ClothesProductScheduler;
 import com.hwsoft.model.category.Category;
-import com.hwsoft.service.banner.BannerService;
 import com.hwsoft.service.category.CategoryService;
-import com.hwsoft.service.clothes.ClothesProductService;
-import org.apache.commons.lang.builder.ToStringBuilder;
 import org.junit.Assert;
-import org.junit.Before;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import us.codecraft.webmagic.Request;
 import us.codecraft.webmagic.Spider;
-import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.pipeline.ConsolePipeline;
-import us.codecraft.webmagic.scheduler.QueueScheduler;
 
 import java.util.List;
 
 
-/**
- * Created by Administrator on 2016/4/12.
- */
-public class Test  {
+@RunWith(SpringJUnit4ClassRunner.class)  //使用junit4进行测试
+@ContextConfiguration({"classpath:spring/spring-wap.xml"}) //加载配置文件
+public class CrawlerTest {
 
-    static  ApplicationContext ctx;
+    @Autowired
+    CategoryService categoryService;
 
-    public static ClothesProductService getClothesProductService() {
-        ClothesProductService clothesProductService = (ClothesProductService)ctx.getBean("clothesProductService");
-        return clothesProductService;
-    }
-
-    public static BannerService getBannerService() {
-        BannerService bannerService = (BannerService)ctx.getBean("bannerService");
-        return bannerService;
-    }
-
-    public static CategoryService getCategoryService() {
-        CategoryService categoryService = (CategoryService)ctx.getBean("categoryService");
-        return categoryService;
-    }
-
-
-
-    @Before
-    public void init() {
-        ctx = new FileSystemXmlApplicationContext( "classpath:spring/spring-wap.xml");
-    }
-
-    @org.junit.Test
+    @Test
     public void getIndexData() throws Exception{
         Spider.create(new IndexPageProcesser())
                 .addUrl(Conf.INDEX_PAGE_URL)
@@ -62,14 +37,14 @@ public class Test  {
                 .run();
     }
 
-    @org.junit.Test
+    @Test
     public void getProductData() throws Exception{
-
+        Assert.assertNotNull(categoryService);
         ClothesProductScheduler scheduler =   new ClothesProductScheduler();
         Spider spider = Spider.create(new ClothesProductListPageProcesser())
                               .addPipeline(new ClothesProductListPipeline())
                               .scheduler(scheduler);
-        List<Category> categories = getCategoryService().getAll();
+        List<Category> categories = categoryService.getAll();
         int len = 2;
         for (int i = 0; i < categories.size(); i++) {
             for(int k=1;k<len;k++) {
@@ -79,17 +54,9 @@ public class Test  {
             }
         }
         spider.run();
-//
-//        Spider.create(new ClothesProductListPageProcesser())
-//                .addUrl(stringUrls)
-//                .setScheduler()
-//                .addPipeline(new ConsolePipeline())
-//                .addPipeline(new ClothesProductListPipeline())
-//                .run();
-
     }
 
-    @org.junit.Test
+    @Test
     public void getProductDetailData() throws Exception{
         String [] stringUrls = null;
         Spider.create(new IndexPageProcesser())
