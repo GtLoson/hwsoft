@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="b" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,9 +68,12 @@
                     <div class="swiper-container">
                         <div class="swiper-wrapper" id = "banners">
                             <%--<script id="banner-template" type="text/x-handlebars-template">--%>
-                            <%--{{#banners}}--%>
-                            <%--<a href="{{htmlUrl}}"><div class="swiper-slide"><img src="{{imageUrl}}" width="200px" height="120px" alt=""></div></a>--%>
-                            <%--{{/banners}}--%>
+                            <%--{{#each banners}}--%>
+                            <c:forEach items="${banners}" var="item">
+                                <a href="${item.htmlURL}"><div class="swiper-slide"><img src="${item.imageURI}" width="300px" height="120px" alt=""></div></a>
+                            </c:forEach>
+
+                            <%--{{/each}}--%>
                             <%--</script>--%>
                         </div>
                         <!-- Add Pagination -->
@@ -184,42 +188,39 @@
 <script type="text/javascript" src="theme/dist/js/my-app.js"></script>
 <script>
 
-    $(document).ready(function(){
-//    var template = Handlebars.compile($("#banner-template").html());
-//    $('#banners').html(template(banners()));
-//    function banners(){
-//      var data;
-        $.ajax({
-            type: "GET",
-            url: "index/banners.json",
-            data: {},
-            dataType: "json",
-            beforeSend:function(XMLHttpRequest){
-                //提交前处理
-            },
-            success: function(data){
-                var html='';
-                $.each(data, function(index, banner){
-                    html += '<div class="swiper-slide"><img src="'+banner['imageURI']+'" width="200px" height="120px" alt=""></div>';
-                    alert(html);
-                });
-                $('#banners').html(html);
-            },
-            dataFilter:function(data, type){
-                //返回处理后的数据
-                return data;
-            },
-            error:function(XMLHttpRequest, textStatus, errorThrown){
-            },
-            complete:function(XMLHttpRequest, textStatus){
-                //请求完成调用
-            }
-        });
-//      return data;
-//    }
-    });
-
-
+    //$(document).ready(function(){
+    //    var template = Handlebars.compile($("#banner-template").html());
+    //    $('#banners').html(template(banners()));
+    //    function banners(){
+    //      var result;
+    //      $.ajax({
+    //        type: "GET",
+    //        url: "index/banners.json",
+    //        data: {},
+    //        dataType: "json",
+    //        async:false,
+    //        beforeSend:function(XMLHttpRequest){
+    //          //提交前处理
+    //        },
+    //        success: function(data){
+    //          result = data;
+    //        },
+    //        dataFilter:function(data, type){
+    //          //返回处理后的数据
+    //          return data;
+    //        },
+    //        error:function(XMLHttpRequest, textStatus, errorThrown){
+    //        },
+    //        complete:function(XMLHttpRequest, textStatus){
+    //          //请求完成调用
+    //        }
+    //      });
+    //      return result;
+    //    }
+    //
+    //
+    //
+    //  });
 
     var swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
@@ -231,6 +232,7 @@
         autoplay: 2500,
         autoplayDisableOnInteraction: false
     });
+
 </script>
 </body>
 </html>

@@ -21,16 +21,52 @@
 <div class="statusbar-overlay"></div>
 <!-- Panels overlay-->
 <div class="panel-overlay"></div>
-<!-- Left panel with reveal effect-->
-<div class="panel panel-left panel-reveal">
-  <div class="content-block">
-    <p>Left panel content goes here</p>
+<!-- Right panel with cover effect-->
+<div class="panel panel-left panel-cover">
+  <div class="content-block content-block-style">
+
+    <div class="head_avatar">
+      <img src="">
+    </div>
+    <div class="list-block list-block-gb">
+      <ul class="bgcolor">
+        <li class="item-content">
+          <div class="item-media"><i class="icon icon-f7"></i></div>
+          <div class="item-inner">
+            <div class="item-title">个性设置</div>
+            <div class="item-after"></div>
+          </div>
+        </li>
+        <li class="item-content">
+          <div class="item-media"><i class="icon icon-f7"></i></div>
+          <div class="item-inner">
+            <div class="item-title">我的消息</div>
+            <div class="item-after"><span class="badge">5</span></div>
+          </div>
+        </li>
+        <li class="item-content">
+          <div class="item-media"><i class="icon icon-f7"></i></div>
+          <div class="item-inner">
+            <div class="item-title">模式切换</div>
+            <div class="item-after"></div>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>
-<!-- Right panel with cover effect-->
-<div class="panel panel-right panel-cover">
-  <div class="content-block">
-    <p>Right panel content goes here</p>
+<!-- Links popover -->
+<div class="popover popover-links">
+  <div class="popover-angle"></div>
+  <div class="popover-inner">
+    <div class="list-block">
+      <ul>
+        <li><a href="#" class="list-button item-link">我的地址</a></li>
+        <li><a href="#" class="list-button item-link">购物车</a></li>
+        <li><a href="#" class="list-button item-link">订单跟踪</a></li>
+        <li><a href="#" class="list-button item-link">我的设置</a></li>
+      </ul>
+    </div>
   </div>
 </div>
 <!-- Views-->
@@ -49,8 +85,7 @@
         <div class="center sliding">主页</div>
         <div class="right">
           <!-- Right link contains only icon - additional "icon-only" class-->
-          <a href="#" class="link icon-only open-panel" data-panel="right">
-            <i class="icon icon-bars"></i></a>
+          <a href="#" class="open-popover" data-popover=".popover-links"><i class="icon icon-bars"></i></a>
         </div>
 
       </div>
@@ -62,7 +97,7 @@
       <!-- Page, data-page contains page name-->
       <div data-page="index" class="page">
         <!-- Scrollable page content-->
-        <div class="page-content">
+        <div class="page-content .pull-to-refresh-content">
 
           <!--banner-->
           <div class="swiper-container">
@@ -82,77 +117,17 @@
             <div class="swiper-button-prev"></div>
           </div>
 
-          <div class="content-block-title">Welcome To My Awesome App</div>
-          <div class="content-block">
-            <div class="content-block-inner">
-              <p>Couple of worlds here because my app is so awesome!</p>
-              <p>Duis sed erat ac eros ultrices pharetra id ut tellus. Praesent rhoncus enim ornare ipsum aliquet ultricies. Pellentesque sodales erat quis elementum sagittis.</p>
-            </div>
-          </div>
-          <div class="content-block-title">What about simple navigation?</div>
-          <div class="list-block">
-            <ul>
-              <li><a href="about.html" class="item-link">
-                <div class="item-content">
-                  <div class="item-inner">
-                    <div class="item-title">About</div>
-                  </div>
-                </div></a></li>
-              <li><a href="services.html" class="item-link">
-                <div class="item-content">
-                  <div class="item-inner">
-                    <div class="item-title">Services</div>
-                  </div>
-                </div></a></li>
-              <li><a href="form.html" class="item-link">
-                <div class="item-content">
-                  <div class="item-inner">
-                    <div class="item-title">Form</div>
-                  </div>
-                </div></a></li>
-              <li><a href="form.html" class="item-link">
-                <div class="item-content">
-                  <div class="item-inner">
-                    <div class="item-title">Form</div>
-                  </div>
-                </div></a></li>
-              <li><a href="form.html" class="item-link">
-                <div class="item-content">
-                  <div class="item-inner">
-                    <div class="item-title">Form</div>
-                  </div>
-                </div></a></li><li><a href="form.html" class="item-link">
-              <div class="item-content">
-                <div class="item-inner">
-                  <div class="item-title">Form</div>
-                </div>
-              </div></a></li>
-              <li><a href="form.html" class="item-link">
-                <div class="item-content">
-                  <div class="item-inner">
-                    <div class="item-title">Form</div>
-                  </div>
-                </div></a></li>
-              <li><a href="form.html" class="item-link">
-                <div class="item-content">
-                  <div class="item-inner">
-                    <div class="item-title">Form</div>
-                  </div>
-                </div></a></li><li><a href="form.html" class="item-link">
-              <div class="item-content">
-                <div class="item-inner">
-                  <div class="item-title">Form</div>
-                </div>
-              </div></a></li>
+            <div class="man">
+              <div class="man-title">
+                nv
+              </div>
 
-
-            </ul>
-          </div>
-          <div class="content-block-title">Side panels</div>
-          <div class="content-block">
-            <div class="row">
-              <div class="col-50"><a href="#" data-panel="left" class="button open-panel">Left Panel</a></div>
-              <div class="col-50"><a href="#" data-panel="right" class="button open-panel">Right Panel</a></div>
+              <div>
+                <div class="man-left">lf </div>
+                <div class="man-right">
+                  1
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -186,45 +161,6 @@
 <!-- Path to your app js-->
 <script type="text/javascript" src="theme/dist/js/my-app.js"></script>
 <script>
-
-  $(document).ready(function(){
-//    var template = Handlebars.compile($("#banner-template").html());
-//    $('#banners').html(template(banners()));
-//    function banners(){
-//      var data;
-    $.ajax({
-      type: "GET",
-      url: "index/banners.json",
-      data: {},
-      dataType: "json",
-      ascyn:true,
-      beforeSend:function(XMLHttpRequest){
-        //提交前处理
-      },
-      success: function(data){
-        var html='';
-        $.each(data, function(index, banner){
-          html += '<div class="swiper-slide"><img src="'+banner['imageURI']+'" width="200px" height="120px" alt=""></div>';
-          alert(html);
-        });
-        $('#banners').html(html);
-      },
-      dataFilter:function(data, type){
-        //返回处理后的数据
-        return data;
-      },
-      error:function(XMLHttpRequest, textStatus, errorThrown){
-      },
-      complete:function(XMLHttpRequest, textStatus){
-        //请求完成调用
-      }
-    });
-//      return data;
-//    }
-  });
-
-
-
   var swiper = new Swiper('.swiper-container', {
     pagination: '.swiper-pagination',
     nextButton: '.swiper-button-next',

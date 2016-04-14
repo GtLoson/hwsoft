@@ -1,5 +1,6 @@
 package com.hwsoft.wap.controller.index;
 
+import com.google.common.collect.Maps;
 import com.hwsoft.model.banner.Banner;
 import com.hwsoft.service.banner.BannerService;
 import com.hwsoft.wap.controller.BaseController;
@@ -35,11 +36,11 @@ public class IndexController extends BaseController {
 
     @RequestMapping("/banners")
     @ResponseBody
-    public List<Banner> banners(Model model){
+    public Map<String,Object> banners(Model model){
         //首页banner
         List<Banner> banners = bannerService.getAll();
-
-        return banners;
+        model.addAttribute("banners",banners);
+        return model.asMap();
     }
 
     @RequestMapping("/banner")
@@ -48,7 +49,7 @@ public class IndexController extends BaseController {
         Map<String,Object> result = new HashMap<String, Object>();
         //首页banner
         List<Banner> banners = bannerService.getAll();
-        result.put("banners",banners);
+        result.put("banners", banners);
         return result;
     }
 }
