@@ -1,12 +1,20 @@
 package com.hwsoft.crawler.common.pipeline;
 
+
 import com.hwsoft.model.product.ClothesProduct;
 import com.hwsoft.service.clothes.ClothesProductService;
+import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.ContextLoader;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+import org.springframework.web.context.support.WebApplicationObjectSupport;
 import us.codecraft.webmagic.ResultItems;
 import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.pipeline.Pipeline;
 
+import javax.servlet.ServletContext;
 import java.util.List;
 
 /**
@@ -16,6 +24,11 @@ public class ClothesProductListPipeline implements Pipeline {
 
     @Autowired
     ClothesProductService clothesProductService;
+
+    public static ClothesProductService getClothesProductService(){
+        WebApplicationContext wac = ContextLoader.getCurrentWebApplicationContext();
+        return (ClothesProductService)wac.getBean("clothesProductService");
+    }
 
     public ClothesProductListPipeline() {
     }
@@ -31,6 +44,7 @@ public class ClothesProductListPipeline implements Pipeline {
             System.out.println(product.getProductDetailUrl());
 
         }
-        clothesProductService.saveBatch(clothesProductList);
+        Assert.assertNotNull(getClothesProductService());
+        getClothesProductService().saveBatch(clothesProductList);
     }
 }

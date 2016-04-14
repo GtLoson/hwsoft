@@ -5,6 +5,7 @@ import com.hwsoft.model.banner.Banner;
 import com.hwsoft.model.category.Category;
 import com.hwsoft.service.banner.BannerService;
 import com.hwsoft.service.category.CategoryService;
+import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import us.codecraft.webmagic.ResultItems;
 import us.codecraft.webmagic.Task;
@@ -32,9 +33,9 @@ public class IndexPagePipeline implements Pipeline {
         List<Banner> banners = resultItems.get("banners");
         System.out.println("categories="+ JSON.toJSONString(categories));
         System.out.println("banners="+ JSON.toJSONString(banners));
-
+        Assert.assertNotNull(categoryService);
         categoryService.saveBatch(categories);
-
+        Assert.assertNotNull(bannerService);
         bannerService.saveBatch(banners);
 
     }
