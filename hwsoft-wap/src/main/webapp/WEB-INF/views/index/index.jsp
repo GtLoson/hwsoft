@@ -82,7 +82,7 @@
           <a href="#" class="link icon-only open-panel">
             <i class="icon icon-f7"></i></a>
         </div>
-        <div class="center sliding">主页</div>
+        <div class="center sliding"></div>
         <div class="right">
           <!-- Right link contains only icon - additional "icon-only" class-->
           <a href="#" class="open-popover" data-popover=".popover-links"><i class="icon icon-bars"></i></a>
@@ -116,19 +116,63 @@
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
           </div>
-
-            <div class="man">
-              <div class="man-title">
-                nv
+		  	<!--hot-->		
+			 <div class="hot">
+              <div class="hot-title">
+                hot
               </div>
-
-              <div>
-                <div class="man-left">lf </div>
-                <div class="man-right">
-                  1
+              <div class="hot-body">
+                <div class="hot-left">
+					<dl>
+						<dt><img src="/theme/images/abot_icon8.png"></dt>
+						<dd>团队介绍</dd>
+					</dl>
+				</div>
+                <div class="hot-right">
+                  <div class="hot-right-up">
+					<dl>
+						<dt><img src="/theme/images/abot_icon8.png"></dt>
+						<dd>团队介绍</dd>
+					</dl>
+				  </div>
+				  <div class="hot-right-down">
+					<dl>
+						<dt><img src="/theme/images/abot_icon8.png"></dt>
+						<dd>团队介绍</dd>
+					</dl>
+				  </div>
                 </div>
               </div>
             </div>
+			
+		  
+            <div class="man">
+              <div class="man-title">
+                man
+              </div>
+              <div class="man-body">
+                <div class="man-left">lf </div>
+                <div class="man-right">
+                  <div class="man-right-up">rt </div>
+				  <div class="man-right-down">rd </div>
+                </div>
+              </div>
+            </div>
+			
+			 <div class="woman">
+              <div class="woman-title">
+                weman
+              </div>
+              <div class="woman-body">
+                <div class="woman-left">lf </div>
+                <div class="woman-right">
+                  <div class="woman-right-up">rt </div>
+				  <div class="woman-right-down">rd </div>
+                </div>
+              </div>
+            </div>
+			
+			
           </div>
         </div>
       </div>
@@ -152,6 +196,8 @@
         </a>
       </div>
     </div>
+	
+	
   </div>
 </div>
 <!-- Path to Framework7 Library JS-->
